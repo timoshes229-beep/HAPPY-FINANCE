@@ -474,6 +474,31 @@ footer.ft{background:var(--navy-deep);color:var(--mist);position:relative;overfl
 .intro b{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.32em;opacity:0;animation:fadeUp .6s .45s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .ft-cred{opacity:.6}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.1);cursor:pointer;position:relative;flex:none}
+.burger i{position:absolute;left:13px;right:13px;height:2px;background:var(--white);border-radius:2px;transition:transform .35s,top .35s}
+.burger i:first-child{top:17px}.burger i:last-child{top:25px}
+.v3-front .burger{background:rgba(16,38,98,.08)}.v3-front .burger i{background:var(--navy)}
+.gh-r{display:flex;align-items:center;gap:8px}
+.mnav{position:fixed;inset:0;z-index:79;background:var(--navy-deep);color:var(--white);display:flex;flex-direction:column;justify-content:space-between;padding:calc(96px + env(safe-area-inset-top,0px)) var(--gr) calc(32px + env(safe-area-inset-bottom,0px)) var(--gl);clip-path:circle(0 at calc(100% - 44px) 40px);transition:clip-path .7s cubic-bezier(.7,0,.2,1);visibility:hidden}
+.mnav.open{clip-path:circle(150% at calc(100% - 44px) 40px);visibility:visible}
+.mnav nav{display:flex;flex-direction:column}
+.mnav nav a{font-family:var(--serif);font-weight:500;font-size:clamp(34px,10vw,52px);line-height:1.15;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:baseline;opacity:0;transform:translateY(20px);transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.mnav nav a b{font-weight:500}
+.mnav nav a span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--orange)}
+.mnav nav a em{font-style:italic;color:var(--orange)}
+.mnav.open nav a{opacity:1;transform:none}
+.mnav.open nav a:nth-child(1){transition-delay:.25s}.mnav.open nav a:nth-child(2){transition-delay:.3s}.mnav.open nav a:nth-child(3){transition-delay:.35s}.mnav.open nav a:nth-child(4){transition-delay:.4s}.mnav.open nav a:nth-child(5){transition-delay:.45s}.mnav.open nav a:nth-child(6){transition-delay:.5s}
+.mnav .mfoot{display:grid;gap:18px;opacity:0;transition:opacity .4s .5s}
+.mnav.open .mfoot{opacity:1}
+.mnav .mfoot .btn{background:var(--orange);color:var(--ink);justify-content:center}
+.mnav .mfoot p{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+html.menu-open .burger i:first-child{top:21px;transform:rotate(45deg)}
+html.menu-open .burger i:last-child{top:21px;transform:rotate(-45deg)}
+html.menu-open{overflow:hidden}
+html.menu-open .gh{transform:translate(-50%,0)}
+@media (max-width:900px){.burger{display:block}.gh .cta-s{padding:11px 14px}}
+@media (min-width:901px){.mnav{display:none}}
+
 @media (prefers-reduced-motion:reduce){.intro{display:none}}
 @media (prefers-reduced-motion:reduce){.grain,.v3-scroll i{animation:none}}
 </style>
@@ -481,7 +506,8 @@ footer.ft{background:var(--navy-deep);color:var(--mist);position:relative;overfl
 <body>
 <template id="logoTpl"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg></template>
 <div class="intro" id="intro" aria-hidden="true"><div class="il"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect pathLength="1" x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect pathLength="1" x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect pathLength="1" x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path pathLength="1" d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY FINANCE</b></div></div>
-<header class="gh" id="gh"><a class="logo" href="#v3"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY<br>FINANCE</b></a><nav aria-label="Розділи"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#check">Перевірка</a><a href="#calendar">Календар</a></nav><a class="cta-s" href="#contact">Консультація</a><i class="gp" id="gp"></i></header>
+<header class="gh" id="gh"><a class="logo" href="#v3"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY<br>FINANCE</b></a><nav aria-label="Розділи"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#check">Перевірка</a><a href="#calendar">Календар</a></nav><div class="gh-r"><a class="cta-s" href="#contact">Консультація</a><button class="burger" id="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button></div><i class="gp" id="gp"></i></header>
+<div class="mnav" id="mnav" aria-hidden="true"><nav aria-label="Меню"><a href="#services"><b>Послуги</b><span>01</span></a><a href="#process"><b>Як ми працюємо</b><span>02</span></a><a href="#founder"><b>Засновниця</b><span>03</span></a><a href="#values"><b>Цінності</b><span>04</span></a><a href="#check"><b>Експрес-<em>перевірка</em></b><span>05</span></a><a href="#calendar"><b>Календар строків</b><span>06</span></a></nav><div class="mfoot"><a class="btn" href="#contact">Отримати консультацію →</a><p>Онлайн по всій Україні · Пн–Пт до 17:00</p></div></div>
 
 
 <!-- ============ V3 ============ -->
@@ -491,11 +517,11 @@ footer.ft{background:var(--navy-deep);color:var(--mist);position:relative;overfl
       <canvas id="photo" aria-hidden="true"></canvas>
       <canvas class="v3-cut" id="v3cut" aria-hidden="true"></canvas><h1 class="sr">Ваш спокій у цифрах — Happy Finance, бухгалтерський супровід ФОП і ТОВ</h1>
       <div class="v3-front" id="v3front">
-        <header class="hdr"><a class="logo" href="#v3"><i class="lg"></i><b>HAPPY<br>FINANCE</b></a><nav class="nav"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#contact">Контакти</a></nav><a class="cta-s" href="#contact">Консультація</a></header>
+        <header class="hdr"><a class="logo" href="#v3"><i class="lg"></i><b>HAPPY<br>FINANCE</b></a><nav class="nav"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#contact">Контакти</a></nav><div class="gh-r"><a class="cta-s" href="#contact">Консультація</a><button class="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button></div></header>
         <div class="v3-meta"><div><div class="eyebrow">Фінансово-бухгалтерський супровід</div><p>Облік для ФОП і ТОВ, після якого ви знаєте, скільки заробляє ваш бізнес.</p></div><div class="v3-scroll"><i></i>Гортайте</div></div>
       </div>
       <div class="v3-final" id="v3final">
-        <header class="hdr"><a class="logo" href="#v3"><i class="lg"></i><b>HAPPY<br>FINANCE</b></a><nav class="nav"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#contact">Контакти</a></nav><a class="cta-s" href="#contact">Консультація</a></header>
+        <header class="hdr"><a class="logo" href="#v3"><i class="lg"></i><b>HAPPY<br>FINANCE</b></a><nav class="nav"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#contact">Контакти</a></nav><div class="gh-r"><a class="cta-s" href="#contact">Консультація</a><button class="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button></div></header>
         <div class="v3-cap" id="v3cap"><div class="eyebrow">Happy Finance · 7 років</div></div>
         <div class="v3-stats" id="v3stats"><div><b>7</b><span>років на ринку</span></div><div><b>25+</b><span>постійних клієнтів</span></div><div><b>1,5 млн → 10 тис</b><span>нестачі після перебудови обліку</span></div></div>
         <div class="v3-band" id="v3band"><div class="in"><h2>Бухгалтерський, кадровий і управлінський облік для ФОП і ТОВ</h2><a class="btn" href="#contact">Консультація →</a></div></div>
@@ -1241,6 +1267,12 @@ function initGlobal(){
   }
   addEventListener('scroll',tick,{passive:true}); tick();
   gh.addEventListener('focusin',()=>gh.classList.add('show'));
+  // mobile burger menu
+  const bgs=[...document.querySelectorAll('.burger')], mn=document.getElementById('mnav'), root=document.documentElement;
+  function setMenu(o){ root.classList.toggle('menu-open',o); mn.classList.toggle('open',o); mn.setAttribute('aria-hidden',!o); bgs.forEach(b=>{b.setAttribute('aria-expanded',o); b.setAttribute('aria-label',o?'Закрити меню':'Відкрити меню');}); if(o) gh.classList.add('show'); }
+  bgs.forEach(b=>b.addEventListener('click',()=>setMenu(!mn.classList.contains('open'))));
+  mn.addEventListener('click',e=>{ if(e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape') setMenu(false); });
 }
 initV3().start();
 initManifest();
