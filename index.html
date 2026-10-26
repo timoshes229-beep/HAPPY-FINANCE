@@ -59,12 +59,8 @@ button{font:inherit}
 #v3 .track{height:320vh}
 #v3 .sticky{background:#111}
 #photo{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;transform-origin:60% 40%}
-.v3-mask{position:absolute;inset:0;z-index:2;background:#fff;mix-blend-mode:screen;display:flex;flex-direction:column;justify-content:center;padding:0 var(--gr) 0 var(--gl);will-change:transform}
-.v3-word{font-family:var(--display);font-weight:900;color:#000;text-transform:uppercase;line-height:.84;letter-spacing:-.045em;margin:0 auto;width:100%;max-width:1440px;white-space:nowrap}
-.v3-word span{display:block}
-.v3-word .r{text-align:right}
-.v3-word .mb{display:none}
-@media (max-width:600px){.v3-word .mb{display:inline}}
+.v3-cut{position:absolute;inset:0;width:100%;height:100%;z-index:2;display:block}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .v3-front{position:absolute;inset:0;z-index:3;pointer-events:none}
 .v3-front .hdr{pointer-events:auto;color:var(--navy)}
 .v3-meta{position:absolute;left:0;right:0;bottom:calc(40px + env(safe-area-inset-bottom,0px));max-width:1440px;margin:0 auto;padding:0 var(--gr) 0 var(--gl);display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--navy)}
@@ -493,7 +489,7 @@ footer.ft{background:var(--navy-deep);color:var(--mist);position:relative;overfl
   <div class="track">
     <div class="sticky">
       <canvas id="photo" aria-hidden="true"></canvas>
-      <div class="v3-mask" id="v3mask"><h1 class="v3-word" id="v3word"><span>Ваш</span><span class="r">сп<i id="v3o" style="font-style:normal">о</i>кій</span><span>у<br class="mb"> цифрах</span></h1></div>
+      <canvas class="v3-cut" id="v3cut" aria-hidden="true"></canvas><h1 class="sr">Ваш спокій у цифрах — Happy Finance, бухгалтерський супровід ФОП і ТОВ</h1>
       <div class="v3-front" id="v3front">
         <header class="hdr"><a class="logo" href="#v3"><i class="lg"></i><b>HAPPY<br>FINANCE</b></a><nav class="nav"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#contact">Контакти</a></nav><a class="cta-s" href="#contact">Консультація</a></header>
         <div class="v3-meta"><div><div class="eyebrow">Фінансово-бухгалтерський супровід</div><p>Облік для ФОП і ТОВ, після якого ви знаєте, скільки заробляє ваш бізнес.</p></div><div class="v3-scroll"><i></i>Гортайте</div></div>
@@ -800,7 +796,7 @@ function loop(fn){ let id=0,run=false; const f=t=>{ if(!run) return; fn(t); id=r
 /* =============== V3: editorial zoom =============== */
 function initV3(){
   const sec=document.getElementById('v3'), cv=document.getElementById('photo'), ctx=cv.getContext('2d');
-  const mask=document.getElementById('v3mask'), word=document.getElementById('v3word'), oEl=document.getElementById('v3o');
+  const cut=document.getElementById('v3cut'), cx2=cut.getContext('2d');
   const front=document.getElementById('v3front'), band=document.getElementById('v3band'), stats=document.getElementById('v3stats'), cap=document.getElementById('v3cap');
   const finalHdr=document.querySelector('#v3final .hdr'), bandIn=[...band.querySelectorAll('.in>*')];
   let origin=[0,0];
@@ -819,17 +815,41 @@ function initV3(){
     const vg=ctx.createRadialGradient(W*.5,H*.45,base*.2,W*.5,H*.5,base*.8);
     vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.55)'); ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
   }
+  // layout of the cut-out words, drawn on canvas (robust on iOS, no blend modes / giant layers)
+  let LN=null, lastKey='';
+  const FONT=fs=>`900 ${fs}px Montserrat, "Arial Black", sans-serif`;
+  function setFont(fs){ cx2.font=FONT(fs); if('letterSpacing' in cx2) cx2.letterSpacing=(-0.045*fs)+'px'; }
+  function wOf(t,fs){ setFont(fs); return cx2.measureText(t).width; }
   function fit(){
-    const W=sec.querySelector('.sticky').clientWidth;
-    word.style.fontSize='100px';
-    const widest=Math.max(...[...word.children].map(s=>s.scrollWidth));
-    const avail=Math.min(W,1440)-parseFloat(getComputedStyle(mask).paddingLeft)-parseFloat(getComputedStyle(mask).paddingRight);
-    const fs=Math.min(100*avail/widest, innerHeight*.29);
-    word.style.fontSize=fs+'px';
-    mask.style.transform='none';
-    const mr=mask.getBoundingClientRect(), or=oEl.getBoundingClientRect();
-    origin=[or.left-mr.left+or.width*.16, or.top-mr.top+or.height*.55];
-    mask.style.transformOrigin=`${origin[0]}px ${origin[1]}px`;
+    const dpr=Math.min(devicePixelRatio||1,2), W=cut.clientWidth, H=cut.clientHeight;
+    cut.width=W*dpr; cut.height=H*dpr;
+    const pad=Math.max(16,Math.min(W*.04,40));
+    const avail=Math.min(W,1440)-pad*2, x0=(W-Math.min(W,1440))/2+pad;
+    const mob=W<700;
+    const lines=mob?[['ВАШ','l'],['СПОКІЙ','l'],['У ЦИФРАХ','l']]:[['ВАШ','l'],['СПОКІЙ','r'],['У ЦИФРАХ','l']];
+    let sizes;
+    if(mob){ sizes=lines.map(([t])=>100*avail/wOf(t,100)); const tot=sizes.reduce((a,b)=>a+b*.86,0), maxH=H*.62; if(tot>maxH) sizes=sizes.map(v=>v*maxH/tot); }
+    else { const widest=Math.max(...lines.map(([t])=>wOf(t,100))); const fs=Math.min(100*avail/widest,H*.235); sizes=lines.map(()=>fs); }
+    const tot=sizes.reduce((a,b)=>a+b*.86,0);
+    let y=(H-tot)/2-H*.03;
+    LN=lines.map(([t,al],k)=>{ const fs=sizes[k]; const w=wOf(t,fs); const x=al==='r'?x0+avail-w:x0; setFont(fs); const m=cx2.measureText(t); const asc=m.actualBoundingBoxAscent||fs*.72; const base=y+fs*.86/2+asc/2; y+=fs*.86; return {t,fs,x,base,asc}; });
+    const sp=LN[1]; const pre=wOf('СП',sp.fs), oW=wOf('О',sp.fs);
+    origin=[sp.x+pre+oW*.16, sp.base-sp.asc*.5];
+    lastKey='';
+  }
+  function drawCut(p){
+    const key=p.toFixed(4)+'|'+cut.width; if(key===lastKey||!LN) return; lastKey=key;
+    const dpr=cut.width/Math.max(1,cut.clientWidth);
+    cx2.setTransform(1,0,0,1,0,0); cx2.clearRect(0,0,cut.width,cut.height);
+    const a=1-smooth(.4,.5,p); if(a<=0.001) return;
+    const z=smooth(0,.5,p), sc=Math.pow(90,ease(z));
+    cx2.globalAlpha=a; cx2.globalCompositeOperation='source-over';
+    cx2.fillStyle='#fff'; cx2.fillRect(0,0,cut.width,cut.height);
+    cx2.globalCompositeOperation='destination-out'; cx2.globalAlpha=1;
+    cx2.setTransform(dpr*sc,0,0,dpr*sc,dpr*(origin[0]-origin[0]*sc),dpr*(origin[1]-origin[1]*sc));
+    cx2.textBaseline='alphabetic'; cx2.fillStyle='#000';
+    LN.forEach(l=>{ setFont(l.fs); cx2.fillText(l.t,l.x,l.base); });
+    cx2.setTransform(1,0,0,1,0,0); cx2.globalCompositeOperation='source-over';
   }
   const init=()=>{ paint(); fit(); };
   heroImg.addEventListener('load',paint);
@@ -838,10 +858,7 @@ function initV3(){
 
   const L=loop(t=>{
     const p=reduce?1:progress(sec);
-    const z=smooth(0,.5,p);
-    const s=Math.pow(90,ease(z));
-    mask.style.transform=`scale(${s})`;
-    mask.style.opacity=1-smooth(.4,.5,p);
+    drawCut(p);
     front.style.opacity=1-smooth(0,.12,p);
     const kb=reduce?0:Math.sin(t*.00015)*.02;
     cv.style.transform=`scale(${1.12-smooth(0,.6,p)*.1+kb})`;
