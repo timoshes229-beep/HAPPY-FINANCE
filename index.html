@@ -912,6 +912,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 (function(){
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lite = matchMedia('(max-width: 820px), (pointer: coarse)').matches;
+function onWidth(fn){ let w=innerWidth; addEventListener('resize',()=>{ if(innerWidth!==w){ w=innerWidth; fn(); } }); }
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 const lerp=(a,b,t)=>a+(b-a)*t;
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
@@ -984,7 +985,7 @@ function initV3(){
   const init=()=>{ paint(); fit(); };
   heroImg.addEventListener('load',paint);
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(init);
-  let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{ if(!sec.hidden) init(); },200);});
+  let rt; onWidth(()=>{clearTimeout(rt);rt=setTimeout(()=>{ if(!sec.hidden) init(); },200);});
 
   const L=loop(t=>{
     const trr=sec.querySelector('.track').getBoundingClientRect(); if(trr.bottom<-20||trr.top>innerHeight) return;
@@ -1179,7 +1180,7 @@ function initFounder(){
     const f=p*(N-1), i0=Math.floor(f), k=ease(clamp(f-i0)), i1=Math.min(N-1,i0+1);
     const a=pos(i0), b=pos(i1);
     const cx=lerp(a[0],b[0],k), cy=lerp(a[1],b[1],k);
-    const ax=mob?innerWidth*.12:innerWidth*.3, ay=mob?innerHeight*.9:innerHeight*.74;
+    const ax=mob?innerWidth*.12:innerWidth*.3, ay=mob?innerHeight*lerp(.7,.9,smooth(N-2,N-1,f)):innerHeight*.74;
     world.style.transform=`translate3d(${ax-cx}px,${ay-cy}px,0)`;
     glow.style.transform=`translate3d(${ax+60}px,${ay-160}px,0)`;
     const segLen=SX+SY, start=SX*.6;
@@ -1191,7 +1192,7 @@ function initFounder(){
     hint.style.opacity=1-clamp(p*6);
     if(caseIdx>=0){ const kk=reduce?1:clamp((f-(caseIdx-.5))/.6); caseN.textContent=Math.round(1500000-(1490000)*ease(kk)).toLocaleString('uk-UA').replace(/\s/g,' '); }
   }
-  addEventListener('resize',()=>{layout();tick();});
+  onWidth(()=>{layout();tick();});
   addEventListener('scroll',tick,{passive:true});
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{layout();tick();});
   layout(); tick();
