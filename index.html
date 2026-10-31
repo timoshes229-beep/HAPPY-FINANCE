@@ -140,17 +140,17 @@ button{font:inherit}
 .s-cat{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:start}
 .s-list{min-width:0}
 .s-row{position:relative;border-bottom:1px solid rgba(16,38,98,.12);cursor:pointer}
-.s-row .r{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:clamp(14px,1.6vw,22px) 0}
+.s-row .r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:clamp(14px,1.6vw,22px) 0}
 .s-row .n{font-family:var(--mono);font-size:12px;color:#9AA3C4;transition:color .3s}
 .s-row h3{position:relative;font-family:var(--display);letter-spacing:-.025em;font-weight:700;font-size:clamp(23px,2.3vw,38px);line-height:1.05;margin:0;color:rgba(16,38,98,.42);transition:color .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
 .s-row h3::before{content:"";position:absolute;left:-34px;top:55%;width:24px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
-.s-row .c{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9AA3C4;white-space:nowrap}
+.s-row .c{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#596184;white-space:nowrap}
 .s-row.on h3{color:var(--navy);font-style:normal;transform:translateX(34px)}
 .s-row.on h3::before{transform:scaleX(1)}
 .s-row.on .n{color:var(--orange)}
 .s-row .d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.7,0,.2,1)}
 .s-row .d>div{overflow:hidden;min-height:0}
-.s-row .d ul{list-style:none;margin:0;padding:0 0 22px 62px;display:grid;gap:8px;font-size:15px;color:var(--ink)}
+.s-row .d ul{list-style:none;margin:0;padding:0 0 22px 34px;display:grid;gap:8px;font-size:15px;color:var(--ink)}
 .s-row .d li{display:flex;gap:10px}
 .s-row .d li::before{content:"";flex:none;width:5px;height:5px;margin-top:9px;background:var(--orange)}
 .s-mph{display:none}
@@ -183,9 +183,9 @@ button{font:inherit}
   .s-row.on h3{transform:translateX(26px)}
   .s-row h3::before{left:-26px;width:18px}
   .s-row.on .d{grid-template-rows:1fr}
-  .s-row .d ul{padding-left:48px}
-  .s-mph{display:block;width:calc(100% - 48px);margin:4px 0 14px 48px;aspect-ratio:16/9;object-fit:cover;filter:grayscale(1) contrast(1.05)}
-  .s-row .r{grid-template-columns:34px minmax(0,1fr) auto}
+  .s-row .d ul{padding-left:26px}
+  .s-mph{display:block;width:calc(100% - 26px);margin:4px 0 14px 26px;aspect-ratio:16/9;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+  .s-row .r{grid-template-columns:minmax(0,1fr) auto}
 }
 /* ======================= Block 4 — process stack ======================= */
 #process{background:var(--paper);color:var(--navy);padding-block:clamp(96px,12vw,170px) clamp(60px,8vw,120px)}
@@ -579,6 +579,10 @@ html.menu-open .gh{transform:translate(-50%,0)}
   .mglow{filter:none;mix-blend-mode:normal;opacity:.8}
   .flutes,.fworld,.mphr{will-change:auto}
 }
+/* one scale for section headings */
+#services .s-top h2,#process .p-head h2,#team .t-top h2,#values .v-left h2,#check .q-intro h2,#calendar .cal-top h2,#contact .c-grid h2{font-size:clamp(32px,4.2vw,62px);line-height:1.02;letter-spacing:-.025em;font-weight:700;text-transform:none}
+/* labels: plain sentence case instead of tracked caps */
+.eyebrow{font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
 @media (prefers-reduced-motion:reduce){.grain,.v3-scroll i{animation:none}}
 </style>
 </head>
@@ -586,7 +590,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <template id="logoTpl"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg></template>
 <div class="intro" id="intro" aria-hidden="true"><div class="il"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect pathLength="1" x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect pathLength="1" x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect pathLength="1" x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path pathLength="1" d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY FINANCE</b></div></div>
 <header class="gh" id="gh"><a class="logo" href="#v3"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY<br>FINANCE</b></a><nav aria-label="Розділи"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#team">Команда</a><a href="#check">Перевірка</a><a href="#calendar">Календар</a></nav><div class="gh-r"><a class="cta-s" href="#contact">Консультація</a><button class="burger" id="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button></div><i class="gp" id="gp"></i></header>
-<div class="mnav" id="mnav" aria-hidden="true"><nav aria-label="Меню"><a href="#services"><b>Послуги</b><span>01</span></a><a href="#process"><b>Як ми працюємо</b><span>02</span></a><a href="#founder"><b>Засновниця</b><span>03</span></a><a href="#team"><b>Команда</b><span>04</span></a><a href="#values"><b>Цінності</b><span>05</span></a><a href="#check"><b>Експрес-<em>перевірка</em></b><span>06</span></a><a href="#calendar"><b>Календар строків</b><span>07</span></a></nav><div class="mfoot"><a class="btn" href="#contact">Отримати консультацію →</a><p><a href="tel:+380663568040">+380 66 356 80 40</a> · <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Telegram</a> · <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener">Instagram</a></p></div></div>
+<div class="mnav" id="mnav" aria-hidden="true"><nav aria-label="Меню"><a href="#services"><b>Послуги</b></a><a href="#process"><b>Як ми працюємо</b></a><a href="#founder"><b>Засновниця</b></a><a href="#team"><b>Команда</b></a><a href="#values"><b>Цінності</b></a><a href="#check"><b>Експрес-<em>перевірка</em></b></a><a href="#calendar"><b>Календар строків</b></a></nav><div class="mfoot"><a class="btn" href="#contact">Отримати консультацію</a><p><a href="tel:+380663568040">+380 66 356 80 40</a> · <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Telegram</a> · <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener">Instagram</a></p></div></div>
 
 
 <!-- ============ V3 ============ -->
@@ -601,9 +605,9 @@ html.menu-open .gh{transform:translate(-50%,0)}
       </div>
       <div class="v3-final" id="v3final">
         <header class="hdr"><a class="logo" href="#v3"><i class="lg"></i><b>HAPPY<br>FINANCE</b></a><nav class="nav"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#contact">Контакти</a></nav><div class="gh-r"><a class="cta-s" href="#contact">Консультація</a><button class="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button></div></header>
-        <div class="v3-cap" id="v3cap"><div class="eyebrow">Happy Finance · з 2019</div></div>
+        <div class="v3-cap" id="v3cap"><div class="eyebrow">Happy Finance з 2019 року</div></div>
         <div class="v3-stats" id="v3stats"><div><b>7</b><span>років на ринку</span></div><div><b>25+</b><span>постійних клієнтів</span></div><div><b>1,5 млн → 10 тис</b><span>нестачі після перебудови обліку</span></div></div>
-        <div class="v3-band" id="v3band"><div class="in"><h2>Бухгалтерський, кадровий і управлінський облік для ФОП і ТОВ</h2><a class="btn" href="#contact">Консультація →</a></div></div>
+        <div class="v3-band" id="v3band"><div class="in"><h2>Бухгалтерський, кадровий і управлінський облік для ФОП і ТОВ</h2><a class="btn" href="#contact">Отримати консультацію</a></div></div>
       </div>
     </div>
   </div>
@@ -615,7 +619,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="msticky" id="msticky">
       <div class="flutes" id="flutes"></div>
       <div class="mglow" id="mglow"></div>
-      <div class="mhud"><span class="eyebrow">Наш підхід</span><span class="eyebrow" id="mcount">01 / 08</span></div>
+      <div class="mhud"><span></span><span class="eyebrow" id="mcount">01 / 08</span></div>
       <div class="mphr xl"><p>Бухгалтерія —</p></div>
       <div class="mphr m"><p>це не просто документи для податкової</p></div>
       <div class="mphr xl"><p>Це ваш <em>спокій</em></p></div>
@@ -646,7 +650,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <!-- ============ BLOCK 3: services ============ -->
 <section id="services" aria-label="Послуги">
   <div class="in">
-    <div class="s-head"><span class="eyebrow">Послуги</span><span class="eyebrow">19 напрямів</span></div>
+    <div class="s-head"><span></span><span class="eyebrow">19 напрямів</span></div>
     <div class="s-top">
       <h2>Обираєте форму бізнесу — <em>решту беремо на себе</em></h2>
       <p>Від відкриття до закриття: облік, податки, кадри, ПДВ і фінмоніторинг. Наведіть на послугу або натисніть, щоб побачити, що входить.</p>
@@ -664,7 +668,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
         <div class="s-body" id="sBody"></div>
       </aside>
     </div>
-    <div class="s-foot"><p>Не знайшли свою задачу? <em>Немає неможливих ситуацій</em> — підберемо варіант.</p><a class="btn" href="#contact">Описати задачу →</a></div>
+    <div class="s-foot"><p>Не знайшли свою задачу? <em>Немає неможливих ситуацій</em> — підберемо варіант.</p><a class="btn" href="#contact">Отримати консультацію</a></div>
   </div>
 </section>
 
@@ -673,7 +677,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <section id="process" aria-label="Як ми працюємо">
   <div class="in">
     <div class="p-head">
-      <div><span class="eyebrow">Як ми працюємо</span><h2>Від хаосу<br><span>до системи</span></h2></div>
+      <div><span></span><h2>Від хаосу<br><span>до системи</span></h2></div>
       <p>Ми не накладаємо шаблон. Спочатку розбираємось, як бізнес працює насправді, і лише тоді змінюємо процеси.</p>
     </div>
     <div class="stack" id="stack">
@@ -742,7 +746,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="fsticky" id="fsticky">
       <div class="fglow" id="fglow"></div>
       <div class="fhead">
-        <div><span class="eyebrow">Шлях засновниці · Марія Панченко</span><h2>Від обліковця до <em>фінансового директора</em></h2></div>
+        <div><span class="eyebrow">Шлях засновниці Марії Панченко</span><h2>Від обліковця до <em>фінансового директора</em></h2></div>
         <div class="flvl">Рівень<b id="flvl">01<span> / 08</span></b></div>
       </div>
       <div class="fworld" id="fworld">
@@ -763,7 +767,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <!-- ============ BLOCK 5b: team ============ -->
 <section id="team" aria-label="Команда">
   <div class="in">
-    <div class="t-head"><span class="eyebrow">Команда</span><span class="eyebrow">«Радісні фінанси» · 5 людей</span></div>
+    <div class="t-head"><span></span><span class="eyebrow">«Радісні фінанси», 5 людей</span></div>
     <div class="t-top">
       <h2>Люди <em>за вашими цифрами</em></h2>
       <p>Кожна відповідає за свою ділянку: первинка, зарплата, закупівлі, звітність. Тому нічого не губиться — і все робиться в робочий час, до 17:00.</p>
@@ -779,7 +783,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <!-- ============ BLOCK 6: values clock ============ -->
 <section id="values" aria-label="Цінності">
   <div class="in">
-    <div class="v-head"><span class="eyebrow">Цінності</span><span class="eyebrow">Робочий день Happy Finance</span></div>
+    <div class="v-head"><span></span><span class="eyebrow">Робочий день Happy Finance</span></div>
     <div class="v-grid">
       <div class="v-left">
         <h2>Любов до людей <em>і до бізнесу</em></h2>
@@ -807,7 +811,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <!-- ============ BLOCK 7: express audit ============ -->
 <section id="check" aria-label="Експрес-перевірка обліку">
   <div class="in">
-    <div class="q-head"><span class="eyebrow">Експрес-перевірка</span><span class="eyebrow">6 запитань · 60 секунд</span></div>
+    <div class="q-head"><span></span><span class="eyebrow">6 запитань, 60 секунд</span></div>
     <div class="q-wrap">
       <div>
         <div class="q-intro"><h2>Наскільки ваш облік <em>під контролем?</em></h2><p>Відповідайте на запитання, а праворуч складеться акт експрес-перевірки: рівень ризику, точки, на які варто подивитись, і формат супроводу, що підійде.</p></div>
@@ -830,7 +834,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
           </svg>
           <div class="score"><span>Рівень ризику</span><b id="actScore">0<small> / 100</small></b></div>
           <p class="rec" id="actRec"></p>
-          <a class="btn" href="#contact" id="actCta">Обговорити результат →</a>
+          <a class="btn" href="#contact" id="actCta">Обговорити результат</a>
         </div>
       </div>
     </div>
@@ -840,13 +844,13 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <!-- ============ BLOCK 9: tax calendar board ============ -->
 <section id="calendar" aria-label="Податковий календар">
   <div class="in">
-    <div class="cal-head"><span class="eyebrow">Податковий календар</span><span class="eyebrow" id="calToday"></span></div>
+    <div class="cal-head"><span></span><span class="eyebrow" id="calToday"></span></div>
     <div class="cal-top">
       <div><h2>Найближчі <em>податкові строки</em></h2><p>Табло рахується від сьогоднішньої дати. Клієнтам Happy Finance про ці дні думати не потрібно: реквізити й нагадування надсилаємо заздалегідь.</p></div>
       <div class="next-box"><span class="eyebrow">Найближчий строк через</span><div class="digits" id="nextDigits"></div><div class="lbl" id="nextLbl"></div></div>
     </div>
     <div class="board" id="board" role="table" aria-label="Найближчі податкові строки"></div>
-    <div class="cal-foot"><p>Строки орієнтовні, за загальними правилами Податкового кодексу. Якщо дата випадає на вихідний або змінюється законодавство, ми уточнюємо її для вас.</p><a class="btn" href="#contact">Хочу, щоб про строки думали ви →</a></div>
+    <div class="cal-foot"><p>Строки орієнтовні, за загальними правилами Податкового кодексу. Якщо дата випадає на вихідний або змінюється законодавство, ми уточнюємо її для вас.</p><a class="btn" href="#contact">Отримати консультацію</a></div>
   </div>
 </section>
 
@@ -855,7 +859,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 <section id="contact" aria-label="Заявка">
   <div class="flutes2"></div>
   <div class="in">
-    <div class="c-head"><span class="eyebrow">Перший крок</span><span class="eyebrow">Відповідаємо до 17:00</span></div>
+    <div class="c-head"><span></span><span class="eyebrow">Відповідаємо до 17:00</span></div>
     <div class="c-grid">
       <div>
         <h2>Почнімо з розмови про <em>ваші цифри</em></h2>
@@ -885,7 +889,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
             <p>Після натискання відкриється Telegram Марії, а текст заявки скопіюється — залишиться вставити й надіслати.</p>
           </div>
         </form>
-        <div class="c-ok" id="cOk"><svg viewBox="0 0 84 84" aria-hidden="true"><circle pathLength="1" cx="42" cy="42" r="39"/><path pathLength="1" d="M26 43l11 11 22-24"/></svg><h3 id="cOkT">Дякуємо!</h3><p id="cOkP">Текст заявки скопійовано. Вставте його в чат з Марією в Telegram і надішліть — відповімо в робочий час, до 17:00.</p><a class="btn tgb" href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Відкрити Telegram →</a></div>
+        <div class="c-ok" id="cOk"><svg viewBox="0 0 84 84" aria-hidden="true"><circle pathLength="1" cx="42" cy="42" r="39"/><path pathLength="1" d="M26 43l11 11 22-24"/></svg><h3 id="cOkT">Дякуємо!</h3><p id="cOkP">Текст заявки скопійовано. Вставте його в чат з Марією в Telegram і надішліть — відповімо в робочий час, до 17:00.</p><a class="btn tgb" href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Відкрити Telegram</a></div>
       </div>
     </div>
   </div>
@@ -1111,7 +1115,7 @@ function initServices(){
   function moveInk(){ const t=tabs.find(x=>x.getAttribute('aria-selected')==='true'); if(!t) return; ink.style.width=t.offsetWidth+'px'; ink.style.transform=`translate(${t.offsetLeft}px,${t.offsetTop+t.offsetHeight-1}px)`; }
   function render(k,anim){
     cur=k; act=-1;
-    list.innerHTML=D[k].map(([t,items],i)=>`<div class="s-row" data-i="${i}" tabindex="0" role="button" aria-expanded="false" style="${anim?`animation:rowIn .6s cubic-bezier(.2,.8,.2,1) ${i*60}ms both`:''}"><div class="r"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${esc(t)}</h3><span class="c">${items.length} ${word(items.length)}</span></div><div class="d"><div><img class="s-mph" src="${PH[(off[k]+i)%PH.length]}" alt="" loading="lazy"><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div></div>`).join('');
+    list.innerHTML=D[k].map(([t,items],i)=>`<div class="s-row" data-i="${i}" tabindex="0" role="button" aria-expanded="false" style="${anim?`animation:rowIn .6s cubic-bezier(.2,.8,.2,1) ${i*60}ms both`:''}"><div class="r"><h3>${esc(t)}</h3><span class="c">${items.length} ${word(items.length)}</span></div><div class="d"><div><img class="s-mph" src="${PH[(off[k]+i)%PH.length]}" alt="" loading="lazy"><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div></div>`).join('');
     setActive(0,true);
   }
   function setActive(i,force){
@@ -1119,7 +1123,7 @@ function initServices(){
     [...list.children].forEach((r,j)=>{ r.classList.toggle('on',j===i); r.setAttribute('aria-expanded',j===i); });
     const [t,items]=D[cur][i];
     const words=t.split(' '), last=words.pop();
-    body.innerHTML=`<div class="s-anim"><span class="k">${label[cur]} · ${String(i+1).padStart(2,'0')} · ${items.length} ${word(items.length)}</span><h4>${esc(words.join(' '))}${words.length?' ':''}<em>${esc(last)}</em></h4><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><a class="go" href="#contact">Обговорити цю послугу →</a></div>`;
+    body.innerHTML=`<div class="s-anim"><span class="k">${label[cur]}, ${items.length} ${word(items.length)}</span><h4>${esc(words.join(' '))}${words.length?' ':''}<em>${esc(last)}</em></h4><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><a class="go" href="#contact">Отримати консультацію</a></div>`;
     const pi=(off[cur]+i)%imgs.length; imgs.forEach((im,j)=>im.classList.toggle('on',j===pi));
   }
   tabs.forEach(t=>t.addEventListener('click',()=>{ if(t.dataset.k===cur) return; tabs.forEach(x=>x.setAttribute('aria-selected',x===t)); moveInk(); render(t.dataset.k,!reduce); }));
@@ -1313,7 +1317,7 @@ function initContact(){
 function initCalendar(){
   const months=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];
   const today=new Date(); today.setHours(0,0,0,0);
-  document.getElementById('calToday').textContent='Сьогодні · '+today.getDate()+' '+months[today.getMonth()];
+  document.getElementById('calToday').textContent='Сьогодні, '+today.getDate()+' '+months[today.getMonth()];
   const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x;};
   const ev=[];
   for(let k=-1;k<6;k++){
