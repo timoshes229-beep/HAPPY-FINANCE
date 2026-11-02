@@ -469,6 +469,8 @@ footer.ft{background:var(--navy-deep);color:var(--mist);position:relative;overfl
 .next-box .lbl{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-top:10px;color:var(--orange)}
 /* reserve room before the countdown is filled in, so the block does not grow under the reader */
 .next-box .digits{min-height:clamp(78px,8.4vw,128px)}.next-box .lbl{min-height:1.5em}
+/* desktop: fixed width too, so the column does not widen (and push Maria) when the countdown appears */
+@media (min-width:901px){.next-box{width:300px}.next-box .lbl{white-space:nowrap}.cal-me{margin-right:clamp(16px,3vw,48px)}}
 .board{background:#0B0D14;border:1px solid rgba(255,255,255,.08);padding:clamp(12px,2vw,24px);box-shadow:inset 0 0 60px rgba(0,0,0,.6),0 40px 80px -40px rgba(0,0,0,.8);overflow-x:auto}
 .b-row{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);min-width:max-content}
 .b-row:last-child{border-bottom:0}
