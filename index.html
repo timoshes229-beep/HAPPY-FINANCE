@@ -610,9 +610,10 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .pn-me{position:absolute;left:3%;bottom:0;height:68%;aspect-ratio:677/1000;z-index:20;pointer-events:none}
 .pn-me img{position:absolute;left:0;bottom:0;height:100%;width:auto;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35))}
 .pn-me img{transition:opacity .55s ease,filter .55s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
-.pn-me .smile{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:scale(.97);transform-origin:50% 100%}
+/* the smiling frame sits 4.5% to the right in the source; shift it so the heads line up */
+.pn-me .smile{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:translateX(-4.5%) scale(.97);transform-origin:50% 100%}
 .smiling .pn-me #pnSkeptic{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35))}
-.smiling .pn-me .smile{opacity:1;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:none;transition-delay:.12s}
+.smiling .pn-me .smile{opacity:1;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:translateX(-4.5%);transition-delay:.12s}
 .pn-dc{position:absolute;left:0;top:0;width:clamp(96px,9.5vw,136px);aspect-ratio:3/4;background:#fff;border-radius:3px;box-shadow:0 10px 24px -10px rgba(43,29,20,.45);padding:10px;color:var(--ink);opacity:0;transition:opacity .4s;will-change:transform}
 .pn-dc.on{opacity:1}
 .pn-dc b{display:block;font:700 12px/1.2 var(--display);color:var(--navy);margin-bottom:6px}
@@ -791,7 +792,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
         </div>
         <div class="pn-win" aria-hidden="true">
           <div class="pn-box" id="pnBox"><div class="pn-fold f0"><span>Рахунки</span></div><div class="pn-fold f1"><span>Акти</span></div><div class="pn-fold f2"><span>Накладні</span></div>
-            <div class="pn-me"><img id="pnSkeptic" src="img/team/cut-pain.png" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.png" alt=""></div></div>
+            <div class="pn-me"><img id="pnSkeptic" src="img/team/cut-pain.webp" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.webp" alt=""></div></div>
         </div>
       </div>
     </div>
@@ -837,7 +838,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
           <div class="top"><span class="eyebrow">Крок 1 з 4</span><span class="num">01</span></div>
           <div><h3>Аналіз</h3><p>Дивимось, як усе працює зараз: які документи є, хто за що відповідає, у якому стані податковий кабінет і рахунки.</p><div class="tags"><span>Документообіг</span><span>Ролі в команді</span><span>Податковий статус</span></div></div>
         </div>
-        <div class="vis"><img class="ph" src="img/step1.jpg" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
+        <div class="vis"><img class="ph" src="img/step1.webp" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
           <rect class="d" pathLength="1" x="70" y="30" width="180" height="240" rx="4"/>
           <path class="d" pathLength="1" d="M100 80h120M100 110h120M100 140h90M100 170h120M100 200h70"/>
           <circle class="d o" pathLength="1" cx="255" cy="175" r="58"/>
@@ -850,7 +851,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
           <div class="top"><span class="eyebrow">Крок 2 з 4</span><span class="num">02</span></div>
           <div><h3>Вузькі місця</h3><p>Після аналізу реальних процесів видно, де губляться гроші й час, і де відповідальність людей розмита.</p><div class="tags"><span>Каса і склад</span><span>Взаєморозрахунки</span><span>Точки контролю</span></div></div>
         </div>
-        <div class="vis"><img class="ph" src="img/hero-papers.jpg" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
+        <div class="vis"><img class="ph" src="img/hero-papers.webp" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
           <rect class="d" pathLength="1" x="20" y="120" width="80" height="60" rx="4"/>
           <rect class="d" pathLength="1" x="160" y="120" width="80" height="60" rx="4"/>
           <rect class="d" pathLength="1" x="300" y="120" width="80" height="60" rx="4"/>
@@ -867,7 +868,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
           <div><h3>Система</h3><p>Налаштовуємо зручний документообіг, CRM і точки контролю для власника, під реалії саме вашої команди.</p>
           <div class="eq"><b>автоматизація</b>→<b>ефективна команда</b>+<b>краща комунікація з клієнтами</b>=<b>більше продажів</b></div></div>
         </div>
-        <div class="vis"><img class="ph" src="img/step3.jpg" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
+        <div class="vis"><img class="ph" src="img/step3.webp" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
           <path class="d" pathLength="1" d="M80 60L200 150L320 60M80 240L200 150L320 240M80 60v180M320 60v180"/>
           <circle class="d" pathLength="1" cx="80" cy="60" r="18"/><circle class="d" pathLength="1" cx="320" cy="60" r="18"/>
           <circle class="d" pathLength="1" cx="80" cy="240" r="18"/><circle class="d" pathLength="1" cx="320" cy="240" r="18"/>
@@ -880,7 +881,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
           <div class="top"><span class="eyebrow">Крок 4 з 4</span><span class="num">04</span></div>
           <div><h3>Цифри для рішень</h3><p>Щомісяця ведемо облік і звітність, а власнику даємо управлінські звіти. До кожного рішення — фінансові показники й законодавчі норми.</p><div class="tags"><span>P&amp;L</span><span>Cashflow</span><span>Balance</span><span>Звіти в податкову</span></div></div>
         </div>
-        <div class="vis"><img class="ph" src="img/step4.jpg" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
+        <div class="vis"><img class="ph" src="img/step4.webp" alt="" loading="lazy"><svg viewBox="0 0 400 300" aria-hidden="true">
           <path class="d" pathLength="1" d="M40 30v240h330"/>
           <path class="d" pathLength="1" d="M80 270v-60M140 270v-90M200 270v-75M260 270v-130M320 270v-170"/>
           <path class="d o" pathLength="1" d="M60 220L120 180L180 195L240 130L330 70"/>
@@ -908,7 +909,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
         <div class="fc"><span class="lv">Рівень 05 · 2012–2016</span><span class="pl">«Чорна кава» · Кропивницький</span><h3>Директорка <em>ресторану й цеху</em></h3><p>Облік у 1С з нуля, управлінські звіти для власника. Відкрила кондитерський цех з нуля й налагодила збут.</p><div class="chips"><span>Експорт в Ізраїль</span><span>Команда 50 людей</span></div></div>
         <div class="fc case fluted-o"><span class="lv">Рівень 06 · 2017–2019</span><span class="pl">«Вересень Логістик» · 300 людей</span><h3>Фінансова <em>директорка</em></h3><div class="big"><span id="caseN">1 500 000</span><small>₴ нестач / міс</small></div><p>Управлінський облік після реорганізації, потім — в.о. директора: 3 філії, 30 машин. Нестачі впали до 10–12 тис. ₴ на місяць.</p></div>
         <div class="fc"><span class="lv">Рівень 07 · з 2021</span><span class="pl">«Іта ДРІМ» · текстиль для HoReCa</span><h3>Кризова <em>менеджерка</em></h3><p>Вивела бізнес зі збитків у прибуток і запустила нову колекцію.</p><div class="chips"><span>Товарообіг ×4</span><span>Зі збитків у прибуток</span></div></div>
-        <div class="fc top"><div class="ftx"><span class="lv">Сьогодні</span><span class="pl">з 2019 · «Радісні фінанси»</span><h3>Happy <em>Finance</em></h3><p>Компанія, що виросла з рекомендацій: клієнти приводили клієнтів.</p><blockquote>«Фінанси — це не просто звіти, податки й цифри. Це інструмент, який допомагає власнику бачити реальний стан бізнесу.»</blockquote></div><div class="fph"><img src="img/team/maria-portrait.jpg" alt="Марія Панченко" loading="lazy" style="object-position:50% 25%"></div></div>
+        <div class="fc top"><div class="ftx"><span class="lv">Сьогодні</span><span class="pl">з 2019 · «Радісні фінанси»</span><h3>Happy <em>Finance</em></h3><p>Компанія, що виросла з рекомендацій: клієнти приводили клієнтів.</p><blockquote>«Фінанси — це не просто звіти, податки й цифри. Це інструмент, який допомагає власнику бачити реальний стан бізнесу.»</blockquote></div><div class="fph"><img src="img/team/maria-portrait.webp" alt="Марія Панченко" loading="lazy" style="object-position:50% 25%"></div></div>
       </div>
       <div class="fhint" id="fhint"><i></i>Гортайте — підйом сходами</div>
       <div class="grain"></div>
@@ -966,7 +967,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="q-head"><span></span><span class="eyebrow">6 запитань, 60 секунд</span></div>
     <div class="q-wrap">
       <div>
-        <div class="q-intro"><img class="q-me" src="img/team/cut-quiz.png" alt="" aria-hidden="true" loading="lazy"><h2>Наскільки ваш облік <em>під контролем?</em></h2><p>Відповідайте на запитання, а праворуч складеться акт експрес-перевірки: рівень ризику, точки, на які варто подивитись, і формат супроводу, що підійде.</p></div>
+        <div class="q-intro"><img class="q-me" src="img/team/cut-quiz.webp" alt="" aria-hidden="true" loading="lazy"><h2>Наскільки ваш облік <em>під контролем?</em></h2><p>Відповідайте на запитання, а праворуч складеться акт експрес-перевірки: рівень ризику, точки, на які варто подивитись, і формат супроводу, що підійде.</p></div>
         <div class="q-box">
           <div class="q-meta"><span id="qNum">Запитання 1 / 6</span><div class="q-bar"><i id="qBar"></i></div></div>
           <div class="q-title" id="qTitle"></div>
@@ -999,7 +1000,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="cal-head"><span></span><span class="eyebrow" id="calToday"></span></div>
     <div class="cal-top">
       <div><h2>Найближчі <em>податкові строки</em></h2><p>Табло рахується від сьогоднішньої дати. Клієнтам Happy Finance про ці дні думати не потрібно: реквізити й нагадування надсилаємо заздалегідь.</p></div>
-      <img class="cal-me" src="img/team/cut-calendar.png" alt="" aria-hidden="true" loading="lazy"><div class="next-box"><span class="eyebrow">Найближчий строк через</span><div class="digits" id="nextDigits"></div><div class="lbl" id="nextLbl"></div></div>
+      <img class="cal-me" src="img/team/cut-calendar.webp" alt="" aria-hidden="true" loading="lazy"><div class="next-box"><span class="eyebrow">Найближчий строк через</span><div class="digits" id="nextDigits"></div><div class="lbl" id="nextLbl"></div></div>
     </div>
     <div class="board" id="board" role="table" aria-label="Найближчі податкові строки"></div>
     <div class="cal-foot"><p>Строки орієнтовні, за загальними правилами Податкового кодексу. Якщо дата випадає на вихідний або змінюється законодавство, ми уточнюємо її для вас.</p><a class="btn" href="#contact">Отримати консультацію</a></div>
@@ -1014,7 +1015,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="fq-side">
       <h2>Питання <em>перед стартом</em></h2>
       <p>Те, що зазвичай запитують на першій консультації. Не знайшли свого — напишіть Марії.</p>
-      <div class="fq-fig"><img src="img/team/cut-faq.png" alt="" aria-hidden="true" loading="lazy"><a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Поставити питання</a></div>
+      <div class="fq-fig"><img src="img/team/cut-faq.webp" alt="" aria-hidden="true" loading="lazy"><a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Поставити питання</a></div>
     </div>
     <div class="fq-list">
       <details name="faq" open><summary>Скільки коштує супровід?<i aria-hidden="true"></i></summary><p>Залежить від форми бізнесу, кількості операцій і працівників. Точну суму називаємо після короткої консультації, коли зрозуміло, який обсяг роботи.</p></details>
@@ -1038,7 +1039,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
       <div>
         <h2>Розберемо ваш облік <em>за одну розмову</em></h2>
         <p class="c-lead">Розкажіть про бізнес — подивимось, як зараз влаштований облік, і запропонуємо варіанти рішень.</p>
-        <figure class="c-me"><div class="c-me-ph"><img src="img/team/maria-contact.jpg" alt="Марія Панченко" loading="lazy"></div><figcaption><em>Відповідаю особисто</em><span>Марія Панченко · засновниця Happy Finance</span></figcaption></figure>
+        <figure class="c-me"><div class="c-me-ph"><img src="img/team/maria-contact.webp" alt="Марія Панченко" loading="lazy"></div><figcaption><em>Відповідаю особисто</em><span>Марія Панченко · засновниця Happy Finance</span></figcaption></figure>
         <div class="c-info">
           <div><span>Телефон</span><a class="cl" href="tel:+380663568040">+380 66 356 80 40</a></div>
           <div><span>Telegram</span><a class="cl" href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">@MariiaPanchenko_ua</a></div>
@@ -1111,7 +1112,7 @@ function initV3(){
   let origin=[0,0];
 
   function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
-  const heroImg=new Image(); heroImg.src='img/hero-papers.jpg';
+  const heroImg=new Image(); heroImg.src='img/hero-papers.webp';
   function paint(){
     const dpr=Math.min(devicePixelRatio||1,1.5); const W=cv.clientWidth,H=cv.clientHeight;
     cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -1277,7 +1278,7 @@ function initServices(){
     ]
   };
   const label={fop:'ФОП',tov:'ТОВ',cons:'Консалтинг'};
-  const PH=['img/step1.jpg','img/step3.jpg','img/step4.jpg','img/hero-papers.jpg','img/team.jpg'];
+  const PH=['img/step1.webp','img/step3.webp','img/step4.webp','img/hero-papers.webp','img/team.webp'];
   const list=document.getElementById('sList'), tabs=[...document.querySelectorAll('.s-tab')], ink=document.getElementById('sInk');
   const ph=document.getElementById('sPh'), body=document.getElementById('sBody');
   ph.innerHTML=PH.map(src=>`<img src="${src}" alt="" loading="lazy">`).join('');
@@ -1562,8 +1563,8 @@ function initGlobal(){
 }
 /* =============== Block 5b: team =============== */
 function initTeam(){
-  // add file names here when real photos arrive, e.g. {maria:'img/team/maria.jpg'}
-  const PHOTOS={maria:'img/team/maria.jpg',evgenia:'img/team/evgenia.jpg',karyna:'img/team/karyna.jpg'};
+  // add file names here when real photos arrive, e.g. {maria:'img/team/maria.webp'}
+  const PHOTOS={maria:'img/team/maria.webp',evgenia:'img/team/evgenia.webp',karyna:'img/team/karyna.webp'};
   // fetch right after the page has loaded, not when the cards reach the screen; show each photo once decoded
   const addPhotos=()=>document.querySelectorAll('.tc').forEach(c=>{ const src=PHOTOS[c.dataset.photo]; if(!src) return;
     const im=new Image(); im.alt=c.querySelector('h3').textContent; im.decoding='async'; im.className='ld'; im.onload=()=>im.classList.remove('ld'); im.src=src;
