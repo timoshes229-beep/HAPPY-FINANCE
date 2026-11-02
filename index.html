@@ -584,13 +584,115 @@ html.menu-open .gh{transform:translate(-50%,0)}
 /* labels: plain sentence case instead of tracked caps */
 .eyebrow{font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
 @media (prefers-reduced-motion:reduce){.grain,.v3-scroll i{animation:none}}
+
+/* ======================= PAIN — blinds over a busy office ======================= */
+#pain{background:var(--paper);color:var(--navy)}
+#pain .track{height:420vh}
+.pn-in{height:100%;max-width:1440px;margin:0 auto;padding:clamp(84px,11vh,120px) var(--gr) clamp(40px,7vh,80px) var(--gl);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,90px);align-items:center}
+.pn-txt h2{font-family:var(--display);font-size:clamp(32px,4.2vw,62px);line-height:1.02;letter-spacing:-.025em;font-weight:700;margin:0}
+.pn-txt h2 em{font-style:normal;color:var(--orange)}
+.pn-list{list-style:none;margin:clamp(22px,4vh,44px) 0 0;padding:0}
+.pn-list li{display:grid;grid-template-columns:18px 1fr;gap:14px;padding:clamp(12px,2.1vh,20px) 0;border-top:1px solid rgba(16,38,98,.16);font-size:clamp(16px,1.2vw,18px);line-height:1.5;font-weight:500;opacity:.4;transition:opacity .5s}
+.pn-list li:last-child{border-bottom:1px solid rgba(16,38,98,.16)}
+.pn-list li::before{content:"";width:9px;height:9px;margin-top:.52em;border-radius:50%;box-shadow:inset 0 0 0 1.5px currentColor;transition:background .4s,box-shadow .4s}
+.pn-list li.past{opacity:.55}
+.pn-list li.on{opacity:1}
+.pn-list li.on::before{background:var(--orange);box-shadow:none}
+.pn-out{margin-top:clamp(20px,3.6vh,36px);opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.pn-out.on{opacity:1;transform:none;pointer-events:auto}
+.pn-out p{font-size:clamp(16px,1.2vw,18px);line-height:1.55;max-width:40ch;margin:0 0 22px;color:#596184}
+.pn-out p b{color:var(--navy)}
+.pn-out .btn{background:var(--orange);color:var(--ink)}
+.pn-win{position:relative;height:min(76vh,780px);height:min(76svh,780px)}
+.pn-glass{position:absolute;inset:0;overflow:hidden;background:#F08A58;box-shadow:0 0 0 12px #fff,0 0 0 13px rgba(16,38,98,.1),0 50px 90px -40px rgba(16,38,98,.45)}
+.pn-glass canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pn-blinds{position:absolute;inset:14px 0 0;display:flex;flex-direction:column;perspective:1600px;--a:8deg;--sh:0}
+.pn-blinds i{flex:1;position:relative;display:block;background:linear-gradient(180deg,#F6F1EC,#E6DACF 62%,#CDBBAB);transform:rotateX(var(--a));box-shadow:0 1px 0 rgba(60,40,25,.12)}
+.pn-blinds i::after{content:"";position:absolute;inset:0;background:#2B1D14;opacity:var(--sh)}
+.pn-rail{position:absolute;left:-6px;right:-6px;top:0;height:16px;background:linear-gradient(180deg,#fff,#E2D6CB);box-shadow:0 4px 10px -4px rgba(43,29,20,.35);z-index:2}
+.pn-rod{position:absolute;top:14px;right:7%;width:3px;height:42%;border-radius:2px;background:linear-gradient(90deg,#fff,#CDBBAB);box-shadow:1px 2px 6px rgba(43,29,20,.3);z-index:2}
+.pn-me{position:absolute;right:4%;bottom:12px;height:74%;aspect-ratio:677/1000;z-index:3;pointer-events:none}
+.pn-me img{position:absolute;right:0;bottom:0;height:100%;width:auto;filter:drop-shadow(0 20px 30px rgba(7,15,43,.35))}
+.pn-me .smile{opacity:0}
+.pn-sill{position:absolute;left:-26px;right:-26px;bottom:-12px;height:26px;background:linear-gradient(180deg,#fff 0,#EFE8E1 55%,#DCCFC3);box-shadow:0 14px 24px -12px rgba(16,38,98,.35);z-index:4}
+@media (max-width:820px){
+  #pain .track{height:340vh}
+  .pn-in{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;gap:26px;padding-top:calc(78px + env(safe-area-inset-top,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+  .pn-win{order:-1;height:50svh;margin:0 12px}
+  .pn-glass{box-shadow:0 0 0 8px #fff,0 0 0 9px rgba(16,38,98,.1),0 30px 60px -30px rgba(16,38,98,.45)}
+  .pn-sill{left:-18px;right:-18px;bottom:-8px;height:18px}
+  .pn-me{height:68%;right:-2%;bottom:8px}
+  .pn-blinds{inset:10px 0 0}.pn-rail{height:12px}
+  .pn-txt{display:grid;grid-template-rows:auto 1fr}
+  .pn-txt h2{font-size:clamp(28px,8vw,38px)}
+  .pn-stage{display:grid;margin-top:16px}
+  .pn-stage>*{grid-area:1/1}
+  .pn-list{margin:0;position:relative}
+  .pn-list li{grid-area:1/1;border:0!important;padding:0;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s;font-size:17px}
+  .pn-list{display:grid}
+  .pn-list li.on{opacity:1;transform:none}
+  .pn-list li.past{opacity:0;transform:translateY(-10px)}
+  .pn-list.gone li.on{opacity:0}
+  .pn-out{margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  #pain .track{height:auto}#pain .sticky{position:relative;height:auto}
+  .pn-list li{opacity:1}
+}
+
+/* cut-out portraits of Maria standing behind a rule */
+.q-intro{position:relative;padding-bottom:26px;border-bottom:1.5px solid var(--navy)}
+.q-intro h2,.q-intro p{max-width:min(44ch,calc(100% - clamp(120px,14vw,190px)))}
+.q-intro h2{max-width:calc(100% - clamp(110px,12vw,170px))}
+.q-me{position:absolute;right:-10px;bottom:0;height:clamp(190px,19vw,290px);width:auto;pointer-events:none}
+.cal-top{grid-template-columns:minmax(0,1.2fr) auto auto;position:relative}
+.cal-me{height:clamp(200px,17vw,270px);width:auto;align-self:end;margin-bottom:calc(-1 * clamp(30px,4vw,50px));pointer-events:none;filter:drop-shadow(0 0 40px rgba(251,104,53,.25))}
+.board{position:relative;z-index:1}
+@media (max-width:900px){
+  .cal-top{grid-template-columns:1fr}
+  .cal-me{position:absolute;right:-6px;top:-8px;height:170px;margin:0;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+  .cal-top h2{max-width:calc(100% - 100px)}
+  .q-me{height:170px;right:-8px}
+}
+
+/* ======================= FAQ ======================= */
+#faq{background:var(--white);color:var(--navy);padding-block:clamp(96px,12vw,170px)}
+#faq .in{max-width:1440px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,110px);align-items:start}
+.fq-side{position:sticky;top:110px}
+.fq-side h2{font-family:var(--display);font-size:clamp(32px,4.2vw,62px);line-height:1.02;letter-spacing:-.025em;font-weight:700;margin:0}
+.fq-side h2 em{font-style:normal;color:var(--orange)}
+.fq-side p{color:#596184;font-size:16px;line-height:1.6;max-width:36ch;margin:18px 0 0}
+.fq-fig{position:relative;margin-top:clamp(24px,4vw,40px);height:clamp(240px,24vw,340px);border-bottom:1.5px solid var(--navy)}
+.fq-fig img{position:absolute;left:0;bottom:0;height:100%;width:auto}
+.fq-fig a{position:absolute;right:0;bottom:22px;font-weight:700;font-size:15px;color:var(--navy);box-shadow:inset 0 -2px 0 var(--orange);padding-bottom:3px}
+.fq-list details{border-top:1px solid rgba(16,38,98,.16)}
+.fq-list details:last-child{border-bottom:1px solid rgba(16,38,98,.16)}
+.fq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:clamp(20px,2.2vw,28px) 0;font-family:var(--display);font-weight:600;font-size:clamp(18px,1.6vw,23px);line-height:1.3;letter-spacing:-.01em}
+.fq-list summary::-webkit-details-marker{display:none}
+.fq-list summary i{flex:none;width:38px;height:38px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(16,38,98,.25);position:relative;transition:background .3s,box-shadow .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.fq-list summary i::before,.fq-list summary i::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:1.8px;margin:-.9px 0 0 -6.5px;background:currentColor;border-radius:2px}
+.fq-list summary i::after{transform:rotate(90deg)}
+.fq-list summary:hover i{box-shadow:inset 0 0 0 1.5px var(--navy)}
+.fq-list details[open] summary i{background:var(--orange);box-shadow:none;transform:rotate(45deg);color:var(--ink)}
+.fq-list details p{margin:0;padding:0 64px 26px 0;font-size:16px;line-height:1.65;color:#596184;max-width:60ch}
+@supports (interpolate-size:allow-keywords){
+  #faq{interpolate-size:allow-keywords}
+  .fq-list details::details-content{block-size:0;overflow:hidden;transition:block-size .45s cubic-bezier(.2,.8,.2,1),content-visibility .45s allow-discrete}
+  .fq-list details[open]::details-content{block-size:auto}
+}
+@media (max-width:900px){
+  #faq .in{grid-template-columns:1fr}
+  .fq-side{position:relative;top:0}
+  .fq-fig{height:200px}
+  .fq-list details p{padding-right:0}
+}
 </style>
 </head>
 <body>
 <template id="logoTpl"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg></template>
 <div class="intro" id="intro" aria-hidden="true"><div class="il"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect pathLength="1" x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect pathLength="1" x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect pathLength="1" x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path pathLength="1" d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY FINANCE</b></div></div>
 <header class="gh" id="gh"><a class="logo" href="#v3"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="37" height="37" stroke="currentColor" stroke-width="2"/><rect x="10" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><rect x="23.5" y="9.5" width="6.5" height="21" rx="3.25" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 20h7" stroke="currentColor" stroke-width="1.8"/></svg><b>HAPPY<br>FINANCE</b></a><nav aria-label="Розділи"><a href="#services">Послуги</a><a href="#process">Як працюємо</a><a href="#founder">Засновниця</a><a href="#team">Команда</a><a href="#check">Перевірка</a><a href="#calendar">Календар</a></nav><div class="gh-r"><a class="cta-s" href="#contact">Консультація</a><button class="burger" id="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button></div><i class="gp" id="gp"></i></header>
-<div class="mnav" id="mnav" aria-hidden="true"><nav aria-label="Меню"><a href="#services"><b>Послуги</b></a><a href="#process"><b>Як ми працюємо</b></a><a href="#founder"><b>Засновниця</b></a><a href="#team"><b>Команда</b></a><a href="#values"><b>Цінності</b></a><a href="#check"><b>Експрес-<em>перевірка</em></b></a><a href="#calendar"><b>Календар строків</b></a></nav><div class="mfoot"><a class="btn" href="#contact">Отримати консультацію</a><p><a href="tel:+380663568040">+380 66 356 80 40</a> · <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Telegram</a> · <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener">Instagram</a></p></div></div>
+<div class="mnav" id="mnav" aria-hidden="true"><nav aria-label="Меню"><a href="#services"><b>Послуги</b></a><a href="#process"><b>Як ми працюємо</b></a><a href="#founder"><b>Засновниця</b></a><a href="#team"><b>Команда</b></a><a href="#values"><b>Цінності</b></a><a href="#check"><b>Експрес-<em>перевірка</em></b></a><a href="#calendar"><b>Календар строків</b></a><a href="#faq"><b>Питання</b></a></nav><div class="mfoot"><a class="btn" href="#contact">Отримати консультацію</a><p><a href="tel:+380663568040">+380 66 356 80 40</a> · <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Telegram</a> · <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener">Instagram</a></p></div></div>
 
 
 <!-- ============ V3 ============ -->
@@ -643,6 +745,36 @@ html.menu-open .gh{transform:translate(-50%,0)}
       <div class="ncell"><span class="k">Клієнти</span><div class="odo" data-v="25" data-suf="+" aria-label="25+"></div><p>ФОП і ТОВ на постійному супроводі</p></div>
       <div class="ncell"><span class="k">Управління</span><div class="odo" data-v="300" aria-label="300"></div><p>людей у команді, якою керувала засновниця</p></div>
       <div class="ncell"><span class="k">Результат</span><div class="odo" data-v="1,5" data-suf="млн" aria-label="1,5 млн"></div><p>нестач на місяць прибрали в дистрибуційній компанії</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCK 2c: pain — blinds ============ -->
+<section id="pain" aria-label="Знайомі ситуації">
+  <div class="track">
+    <div class="sticky">
+      <div class="pn-in">
+        <div class="pn-txt">
+          <h2>Звучить <em>знайомо?</em></h2>
+          <div class="pn-stage">
+            <ol class="pn-list" id="pnList">
+              <li>Звіти здані вчасно, але скільки бізнес заробив за місяць, ніхто сказати не може.</li>
+              <li>Рахунки, акти й накладні живуть у месенджерах, пошті й телефоні бухгалтера.</li>
+              <li>Про нові правила чи штраф ви дізнаєтесь, коли вже пізно щось змінити.</li>
+              <li>Бухгалтер пішов у відпустку, і облік став на паузу.</li>
+            </ol>
+            <div class="pn-out" id="pnOut">
+              <p><b>Ми відкриваємо жалюзі.</b> Гроші, документи й строки стають видимими, і ви бачите стан бізнесу, а не здогадуєтесь.</p>
+              <a class="btn" href="#contact">Отримати консультацію</a>
+            </div>
+          </div>
+        </div>
+        <div class="pn-win" aria-hidden="true">
+          <div class="pn-glass"><canvas id="pnCv"></canvas><div class="pn-blinds" id="pnBlinds"></div><div class="pn-rail"></div><div class="pn-rod"></div></div>
+          <div class="pn-me"><img src="img/team/cut-pain.png" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.png" alt=""></div>
+          <div class="pn-sill"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -814,7 +946,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="q-head"><span></span><span class="eyebrow">6 запитань, 60 секунд</span></div>
     <div class="q-wrap">
       <div>
-        <div class="q-intro"><h2>Наскільки ваш облік <em>під контролем?</em></h2><p>Відповідайте на запитання, а праворуч складеться акт експрес-перевірки: рівень ризику, точки, на які варто подивитись, і формат супроводу, що підійде.</p></div>
+        <div class="q-intro"><img class="q-me" src="img/team/cut-quiz.png" alt="" aria-hidden="true" loading="lazy"><h2>Наскільки ваш облік <em>під контролем?</em></h2><p>Відповідайте на запитання, а праворуч складеться акт експрес-перевірки: рівень ризику, точки, на які варто подивитись, і формат супроводу, що підійде.</p></div>
         <div class="q-box">
           <div class="q-meta"><span id="qNum">Запитання 1 / 6</span><div class="q-bar"><i id="qBar"></i></div></div>
           <div class="q-title" id="qTitle"></div>
@@ -847,10 +979,30 @@ html.menu-open .gh{transform:translate(-50%,0)}
     <div class="cal-head"><span></span><span class="eyebrow" id="calToday"></span></div>
     <div class="cal-top">
       <div><h2>Найближчі <em>податкові строки</em></h2><p>Табло рахується від сьогоднішньої дати. Клієнтам Happy Finance про ці дні думати не потрібно: реквізити й нагадування надсилаємо заздалегідь.</p></div>
-      <div class="next-box"><span class="eyebrow">Найближчий строк через</span><div class="digits" id="nextDigits"></div><div class="lbl" id="nextLbl"></div></div>
+      <img class="cal-me" src="img/team/cut-calendar.png" alt="" aria-hidden="true" loading="lazy"><div class="next-box"><span class="eyebrow">Найближчий строк через</span><div class="digits" id="nextDigits"></div><div class="lbl" id="nextLbl"></div></div>
     </div>
     <div class="board" id="board" role="table" aria-label="Найближчі податкові строки"></div>
     <div class="cal-foot"><p>Строки орієнтовні, за загальними правилами Податкового кодексу. Якщо дата випадає на вихідний або змінюється законодавство, ми уточнюємо її для вас.</p><a class="btn" href="#contact">Отримати консультацію</a></div>
+  </div>
+</section>
+
+
+<!-- ============ BLOCK 9b: FAQ ============ -->
+<section id="faq" aria-label="Часті питання">
+  <div class="in">
+    <div class="fq-side">
+      <h2>Питання <em>перед стартом</em></h2>
+      <p>Те, що зазвичай запитують на першій консультації. Не знайшли свого — напишіть Марії.</p>
+      <div class="fq-fig"><img src="img/team/cut-faq.png" alt="" aria-hidden="true" loading="lazy"><a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Поставити питання</a></div>
+    </div>
+    <div class="fq-list">
+      <details name="faq" open><summary>Скільки коштує супровід?<i aria-hidden="true"></i></summary><p>Залежить від форми бізнесу, кількості операцій і працівників. Точну суму називаємо після короткої консультації, коли зрозуміло, який обсяг роботи.</p></details>
+      <details name="faq"><summary>Ви працюєте тільки з одним містом?<i aria-hidden="true"></i></summary><p>Ні. Працюємо онлайн по всій Україні: документи, звітність і консультації не потребують зустрічей в офісі.</p></details>
+      <details name="faq"><summary>Як передавати документи?<i aria-hidden="true"></i></summary><p>Як вам зручно: фото, скани, електронні документи або доступ до банку й облікової програми. На старті домовляємось про один канал, щоб нічого не губилося.</p></details>
+      <details name="faq"><summary>Можна перейти до вас посеред року?<i aria-hidden="true"></i></summary><p>Так. Спочатку перевіряємо, як вівся облік, знаходимо прогалини й виправляємо їх, а потім беремо поточну роботу.</p></details>
+      <details name="faq"><summary>Прийшов лист із податкової. Що робити?<i aria-hidden="true"></i></summary><p>Надішліть його нам. Розберемо, що саме від вас хочуть, і підготуємо відповідь або пояснення.</p></details>
+      <details name="faq"><summary>Хто веде мій облік: Марія чи команда?<i aria-hidden="true"></i></summary><p>Кожна ділянка має свою відповідальну: первинка, зарплата, закупівлі, звітність. Марія контролює облік і консультує з фінансових рішень.</p></details>
+    </div>
   </div>
 </section>
 
@@ -1402,7 +1554,68 @@ function initTeam(){
   const chk=()=>{ const r=grid.getBoundingClientRect(); if(r.top<innerHeight*.9&&r.bottom>0){ reveal(); removeEventListener('scroll',chk); } };
   addEventListener('scroll',chk,{passive:true}); chk();
 }
+/* ===========================================================
+   PAIN — people rush behind half-closed blinds; scrolling opens
+   the blinds, the blur clears and the crowd calms down
+=========================================================== */
+function initPain(){
+  const sec=document.getElementById('pain'); if(!sec) return;
+  const cv=document.getElementById('pnCv'), ctx=cv.getContext('2d'), bl=document.getElementById('pnBlinds');
+  const smile=document.getElementById('pnSmile'), list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
+  for(let i=0;i<(lite?11:15);i++) bl.appendChild(document.createElement('i'));
+  const MAX=lite?7:10, ppl=[];
+  for(let i=0;i<MAX;i++) ppl.push({x:Math.random()*1.2-.1, d:i%2?1:-1, z:.55+((i*37)%11)/20, ph:Math.random()*6.3, sp:.75+Math.random()*.5, bag:i%3===0, r:(i*3)%MAX});
+  ppl.sort((a,b)=>a.z-b.z);
+  // the low-res buffer is the blur: fewer pixels = softer silhouettes
+  const LV=lite?[.04,.052,.064,.076,.09]:[.045,.06,.075,.09,.11];
+  let W=0,H=0,lvl=-1,bg=null;
+  function size(l){ const r=cv.parentElement.getBoundingClientRect(); lvl=l; W=cv.width=Math.max(24,Math.round(r.width*LV[l])); H=cv.height=Math.max(24,Math.round(r.height*LV[l]));
+    bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,'#FFB892'); bg.addColorStop(.5,'#FB7A45'); bg.addColorStop(1,'#B8471F'); }
+  function person(x,fy,h,ph,dir,al,bag){
+    const s=Math.sin(ph)*.32, bob=Math.abs(Math.cos(ph))*h*.018, hip=fy-h*.46+bob, sh=fy-h*.82+bob, L=h*.47;
+    ctx.fillStyle=ctx.strokeStyle=`rgba(9,20,58,${al})`; ctx.lineCap='round';
+    ctx.lineWidth=h*.095; ctx.beginPath(); ctx.moveTo(x,hip); ctx.lineTo(x+Math.sin(s)*L,hip+Math.cos(s)*L); ctx.moveTo(x,hip); ctx.lineTo(x-Math.sin(s)*L,hip+Math.cos(s)*L); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x-h*.1,sh+h*.03); ctx.quadraticCurveTo(x,sh-h*.02,x+h*.1,sh+h*.03); ctx.lineTo(x+h*.09,hip+h*.06); ctx.lineTo(x-h*.09,hip+h*.06); ctx.closePath(); ctx.fill();
+    ctx.lineWidth=h*.055; const A=h*.34; ctx.beginPath(); ctx.moveTo(x,sh+h*.05); ctx.lineTo(x-Math.sin(s)*A*.8,sh+h*.05+Math.cos(s*.8)*A); ctx.moveTo(x,sh+h*.05); ctx.lineTo(x+Math.sin(s)*A*.8,sh+h*.05+Math.cos(s*.8)*A); ctx.stroke();
+    if(bag) ctx.fillRect(x+Math.sin(s)*A*.8-h*.02,sh+h*.05+Math.cos(s*.8)*A-h*.02,dir*h*.13,h*.16);
+    ctx.beginPath(); ctx.ellipse(x+dir*h*.012,sh-h*.085,h*.062,h*.078,0,0,6.3); ctx.fill();
+  }
+  function draw(c,dt){
+    const want=Math.round((1-c)*(LV.length-1)); if(want!==lvl) size(want);
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+    // soft light columns of a far window wall
+    ctx.fillStyle='rgba(255,236,220,.22)'; for(let k=0;k<3;k++) ctx.fillRect(W*(.12+k*.32),0,W*.12,H*.78);
+    ctx.fillStyle='rgba(120,40,10,.18)'; ctx.fillRect(0,H*.84,W,H*.16);
+    const n=Math.round(lerp(3,MAX,c)), spd=lerp(.5,1.9,c);
+    for(const p of ppl){
+      if(p.r>=n) continue;
+      p.x+=p.d*dt*.07*p.sp*spd*p.z; if(p.x>1.15) p.x=-.15; if(p.x<-.15) p.x=1.15;
+      p.ph+=dt*p.sp*lerp(4.5,9,c)*(spd>1?1:.8);
+      const h=H*.58*p.z, fy=H*(.83+(p.z-.55)*.3);
+      person(p.x*W,fy,h,p.ph,p.d,lerp(.38,.9,(p.z-.55)/.55),p.bag);
+    }
+  }
+  let li=-2,fin=null;
+  function state(p){
+    const a=lerp(24,84,smooth(0,.86,p)); bl.style.setProperty('--a',a.toFixed(2)+'deg'); bl.style.setProperty('--sh',(a/90*.42).toFixed(3));
+    const f=p>.74, i=f?4:Math.min(3,Math.max(0,Math.floor((p-.04)/.17)));
+    if(i!==li){ li=i; lis.forEach((el,k)=>{ el.classList.toggle('on',k===i); el.classList.toggle('past',k<i); }); }
+    if(f!==fin){ fin=f; out.classList.toggle('on',f); list.classList.toggle('gone',f); }
+    smile.style.opacity=smooth(.76,.86,p).toFixed(3);
+    return 1-smooth(.5,.88,p);
+  }
+  if(reduce){ state(1); draw(0,0); return; }
+  onWidth(()=>{ lvl=-1; });
+  let last=0;
+  (function loop(t){
+    requestAnimationFrame(loop);
+    const r=sec.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight){ last=0; return; }
+    const dt=last?Math.min(.05,(t-last)/1000):0; last=t;
+    draw(state(progress(sec)),dt);
+  })(0);
+}
 initV3().start();
+initPain();
 initManifest();
 initServices();
 initProcess();
