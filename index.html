@@ -605,25 +605,31 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .pn-out p b{color:var(--navy)}
 .pn-out .btn{background:var(--orange);color:var(--ink)}
 .pn-win{position:relative;height:min(76vh,780px);height:min(76svh,780px)}
-.pn-glass{position:absolute;inset:0;overflow:hidden;background:#F08A58;box-shadow:0 0 0 12px #fff,0 0 0 13px rgba(16,38,98,.1),0 50px 90px -40px rgba(16,38,98,.45)}
-.pn-glass canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.pn-blinds{position:absolute;inset:14px 0 0;display:flex;flex-direction:column;perspective:1600px;--a:8deg;--sh:0}
-.pn-blinds i{flex:1;position:relative;display:block;background:linear-gradient(180deg,#F6F1EC,#E6DACF 62%,#CDBBAB);transform:rotateX(var(--a));box-shadow:0 1px 0 rgba(60,40,25,.12)}
-.pn-blinds i::after{content:"";position:absolute;inset:0;background:#2B1D14;opacity:var(--sh)}
-.pn-rail{position:absolute;left:-6px;right:-6px;top:0;height:16px;background:linear-gradient(180deg,#fff,#E2D6CB);box-shadow:0 4px 10px -4px rgba(43,29,20,.35);z-index:2}
-.pn-rod{position:absolute;top:14px;right:7%;width:3px;height:42%;border-radius:2px;background:linear-gradient(90deg,#fff,#CDBBAB);box-shadow:1px 2px 6px rgba(43,29,20,.3);z-index:2}
-.pn-me{position:absolute;right:4%;bottom:12px;height:74%;aspect-ratio:677/1000;z-index:3;pointer-events:none}
-.pn-me img{position:absolute;right:0;bottom:0;height:100%;width:auto;filter:drop-shadow(0 20px 30px rgba(7,15,43,.35))}
+.pn-box{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#E9E2DA,#D9CCBF);box-shadow:0 50px 90px -40px rgba(16,38,98,.4)}
+.pn-me{position:absolute;left:3%;bottom:0;height:68%;aspect-ratio:677/1000;z-index:20;pointer-events:none}
+.pn-me img{position:absolute;left:0;bottom:0;height:100%;width:auto;filter:drop-shadow(0 20px 30px rgba(7,15,43,.35))}
 .pn-me .smile{opacity:0}
-.pn-sill{position:absolute;left:-26px;right:-26px;bottom:-12px;height:26px;background:linear-gradient(180deg,#fff 0,#EFE8E1 55%,#DCCFC3);box-shadow:0 14px 24px -12px rgba(16,38,98,.35);z-index:4}
+.pn-dc{position:absolute;left:0;top:0;width:clamp(96px,9.5vw,136px);aspect-ratio:3/4;background:#fff;border-radius:3px;box-shadow:0 10px 24px -10px rgba(43,29,20,.45);padding:10px;color:var(--ink);opacity:0;transition:opacity .4s;will-change:transform}
+.pn-dc.on{opacity:1}
+.pn-dc b{display:block;font:700 12px/1.2 var(--display);color:var(--navy);margin-bottom:6px}
+.pn-dc i{display:block;height:5px;border-radius:3px;background:#E4E6EE;margin:5px 0}
+.pn-dc i:nth-child(3){width:70%}.pn-dc i:nth-child(5){width:50%}
+.pn-dc.chk{background:#FFFDF6;width:clamp(64px,6.2vw,88px)}
+.pn-dc.stk{background:#FFE58A;aspect-ratio:1;width:clamp(70px,6.8vw,94px);font:600 12px/1.3 var(--body)}
+.pn-fold{position:absolute;bottom:8%;width:clamp(104px,10vw,144px);height:clamp(76px,7.4vw,104px);z-index:25;opacity:0;transition:opacity .5s .15s}
+.pn-fold.on{opacity:1}
+.pn-fold::before{content:"";position:absolute;inset:14px 0 0;background:var(--navy);border-radius:4px}
+.pn-fold::after{content:"";position:absolute;left:0;top:0;width:45%;height:20px;background:var(--navy);border-radius:4px 4px 0 0}
+.pn-fold span{position:absolute;left:12px;bottom:12px;z-index:1;color:#fff;font:700 13px var(--display)}
+.pn-fold.f0{right:calc(5% + 2 * clamp(114px,11vw,158px))}.pn-fold.f1{right:calc(5% + clamp(114px,11vw,158px))}.pn-fold.f2{right:5%}
 @media (max-width:820px){
   #pain .track{height:340vh}
   .pn-in{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;gap:26px;padding-top:calc(78px + env(safe-area-inset-top,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
   .pn-win{order:-1;height:50svh;margin:0 12px}
-  .pn-glass{box-shadow:0 0 0 8px #fff,0 0 0 9px rgba(16,38,98,.1),0 30px 60px -30px rgba(16,38,98,.45)}
-  .pn-sill{left:-18px;right:-18px;bottom:-8px;height:18px}
-  .pn-me{height:68%;right:-2%;bottom:8px}
-  .pn-blinds{inset:10px 0 0}.pn-rail{height:12px}
+  .pn-me{height:62%;left:0}
+  .pn-dc{width:78px;padding:7px}.pn-dc b{font-size:10px}.pn-dc.chk{width:56px}.pn-dc.stk{width:62px;font-size:10px}
+  .pn-fold{width:76px;height:58px;bottom:6%;z-index:25}.pn-fold span{font-size:11px;left:8px;bottom:8px}
+  .pn-fold.f0{right:calc(4% + 168px)}.pn-fold.f1{right:calc(4% + 84px)}.pn-fold.f2{right:4%}
   .pn-txt{display:grid;grid-template-rows:auto 1fr}
   .pn-txt h2{font-size:clamp(28px,8vw,38px)}
   .pn-stage{display:grid;margin-top:16px}
@@ -765,15 +771,14 @@ html.menu-open .gh{transform:translate(-50%,0)}
               <li>Бухгалтер пішов у відпустку, і облік став на паузу.</li>
             </ol>
             <div class="pn-out" id="pnOut">
-              <p><b>Ми відкриваємо жалюзі.</b> Гроші, документи й строки стають видимими, і ви бачите стан бізнесу, а не здогадуєтесь.</p>
+              <p><b>Ми наводимо лад.</b> Кожен документ на своєму місці, строки під контролем, і ви бачите стан бізнесу, а не здогадуєтесь.</p>
               <a class="btn" href="#contact">Отримати консультацію</a>
             </div>
           </div>
         </div>
         <div class="pn-win" aria-hidden="true">
-          <div class="pn-glass"><canvas id="pnCv"></canvas><div class="pn-blinds" id="pnBlinds"></div><div class="pn-rail"></div><div class="pn-rod"></div></div>
-          <div class="pn-me"><img src="img/team/cut-pain.png" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.png" alt=""></div>
-          <div class="pn-sill"></div>
+          <div class="pn-box" id="pnBox"><div class="pn-fold f0"><span>Рахунки</span></div><div class="pn-fold f1"><span>Акти</span></div><div class="pn-fold f2"><span>Накладні</span></div>
+            <div class="pn-me"><img src="img/team/cut-pain.png" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.png" alt=""></div></div>
         </div>
       </div>
     </div>
@@ -1556,63 +1561,42 @@ function initTeam(){
   addEventListener('scroll',chk,{passive:true}); chk();
 }
 /* ===========================================================
-   PAIN — people rush behind half-closed blinds; scrolling opens
-   the blinds, the blur clears and the crowd calms down
+   PAIN — papers pile up around Maria while the problems are listed;
+   at the end they fly into three folders and she smiles
 =========================================================== */
 function initPain(){
   const sec=document.getElementById('pain'); if(!sec) return;
-  const cv=document.getElementById('pnCv'), ctx=cv.getContext('2d'), bl=document.getElementById('pnBlinds');
+  const box=document.getElementById('pnBox'), folds=[...box.querySelectorAll('.pn-fold')];
   const smile=document.getElementById('pnSmile'), list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
-  for(let i=0;i<(lite?11:15);i++) bl.appendChild(document.createElement('i'));
-  const MAX=lite?7:10, ppl=[];
-  for(let i=0;i<MAX;i++) ppl.push({x:Math.random()*1.2-.1, d:i%2?1:-1, z:.55+((i*37)%11)/20, ph:Math.random()*6.3, sp:.75+Math.random()*.5, bag:i%3===0, r:(i*3)%MAX});
-  ppl.sort((a,b)=>a.z-b.z);
-  // the low-res buffer is the blur: fewer pixels = softer silhouettes (buffer widths in px)
-  const LV=lite?[30,36,42,50,58]:[36,44,52,62,72];
-  let W=0,H=0,lvl=-1,bg=null;
-  function size(l){ const r=cv.parentElement.getBoundingClientRect(); lvl=l; W=cv.width=LV[l]; H=cv.height=Math.max(24,Math.round(LV[l]*r.height/Math.max(1,r.width)));
-    bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,'#FFB892'); bg.addColorStop(.5,'#FB7A45'); bg.addColorStop(1,'#B8471F'); }
-  function person(x,fy,h,ph,dir,al,bag){
-    const s=Math.sin(ph)*.32, bob=Math.abs(Math.cos(ph))*h*.018, hip=fy-h*.46+bob, sh=fy-h*.82+bob, L=h*.47;
-    ctx.fillStyle=ctx.strokeStyle=`rgba(9,20,58,${al})`; ctx.lineCap='round';
-    ctx.lineWidth=h*.095; ctx.beginPath(); ctx.moveTo(x,hip); ctx.lineTo(x+Math.sin(s)*L,hip+Math.cos(s)*L); ctx.moveTo(x,hip); ctx.lineTo(x-Math.sin(s)*L,hip+Math.cos(s)*L); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x-h*.1,sh+h*.03); ctx.quadraticCurveTo(x,sh-h*.02,x+h*.1,sh+h*.03); ctx.lineTo(x+h*.09,hip+h*.06); ctx.lineTo(x-h*.09,hip+h*.06); ctx.closePath(); ctx.fill();
-    ctx.lineWidth=h*.055; const A=h*.34; ctx.beginPath(); ctx.moveTo(x,sh+h*.05); ctx.lineTo(x-Math.sin(s)*A*.8,sh+h*.05+Math.cos(s*.8)*A); ctx.moveTo(x,sh+h*.05); ctx.lineTo(x+Math.sin(s)*A*.8,sh+h*.05+Math.cos(s*.8)*A); ctx.stroke();
-    if(bag) ctx.fillRect(x+Math.sin(s)*A*.8-h*.02,sh+h*.05+Math.cos(s*.8)*A-h*.02,dir*h*.13,h*.16);
-    ctx.beginPath(); ctx.ellipse(x+dir*h*.012,sh-h*.085,h*.062,h*.078,0,0,6.3); ctx.fill();
-  }
-  function draw(c,dt){
-    const want=Math.round((1-c)*(LV.length-1)); if(want!==lvl) size(want);
-    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-    // soft light columns of a far window wall
-    ctx.fillStyle='rgba(255,236,220,.22)'; for(let k=0;k<3;k++) ctx.fillRect(W*(.12+k*.32),0,W*.12,H*.78);
-    ctx.fillStyle='rgba(120,40,10,.18)'; ctx.fillRect(0,H*.84,W,H*.16);
-    const n=Math.round(lerp(3,MAX,c)), spd=lerp(.5,1.9,c);
-    for(const p of ppl){
-      if(p.r>=n) continue;
-      p.x+=p.d*dt*.07*p.sp*spd*p.z; if(p.x>1.15) p.x=-.15; if(p.x<-.15) p.x=1.15;
-      p.ph+=dt*p.sp*lerp(4.5,9,c)*(spd>1?1:.8);
-      const h=H*.58*p.z, fy=H*(.83+(p.z-.55)*.3);
-      person(p.x*W,fy,h,p.ph,p.d,lerp(.38,.9,(p.z-.55)/.55),p.bag);
-    }
-  }
+  // [label, kind, folder]
+  const D=[['Рахунок №31','',0],['Акт','',1],['Накладна','',2],['Чек','chk',0],['Рахунок №32','',0],['Не забути!','stk',1],['Акт звірки','',1],['Накладна №148','',2],['Чек','chk',2],['Рахунок №33','',0],['Договір','',1],['Звіт?','stk',2],['ТТН','',2],['Чек','chk',0]].slice(0,lite?10:14);
+  const docs=D.map((d,i)=>{ const e=document.createElement('div'); e.className='pn-dc '+d[1]; e.innerHTML=d[1]==='stk'?d[0]:`<b>${d[0]}</b><i></i><i></i><i></i><i></i>`; box.appendChild(e);
+    // chaos spots favour the side away from Maria
+    return {e,f:d[2],at:i/D.length*.62,x:.3+Math.random()*.68,y:Math.random()*.68,r:(Math.random()-.5)*50,ph:Math.random()*6.3,sp:.6+Math.random()*.8}; });
   let li=-2,fin=null;
   function state(p){
-    const a=lerp(24,84,smooth(0,.86,p)); bl.style.setProperty('--a',a.toFixed(2)+'deg'); bl.style.setProperty('--sh',(a/90*.42).toFixed(3));
     const f=p>.74, i=f?4:Math.min(3,Math.max(0,Math.floor((p-.04)/.17)));
     if(i!==li){ li=i; lis.forEach((el,k)=>{ el.classList.toggle('on',k===i); el.classList.toggle('past',k<i); }); }
     if(f!==fin){ fin=f; out.classList.toggle('on',f); list.classList.toggle('gone',f); }
     smile.style.opacity=smooth(.76,.86,p).toFixed(3);
-    return 1-smooth(.5,.88,p);
   }
-  if(reduce){ state(1); draw(0,0); return; }
-  onWidth(()=>{ lvl=-1; });
-  let last=0;
+  function draw(p,ts){
+    const W=box.clientWidth,H=box.clientHeight,o=smooth(.68,.88,p), fw=folds[0].offsetWidth, fh=folds[0].offsetHeight;
+    folds.forEach(f=>f.classList.toggle('on',p>.64));
+    docs.forEach((c,i)=>{
+      c.e.classList.toggle('on',p>=c.at);
+      const w=c.e.offsetWidth, h=c.e.offsetHeight, wob=reduce?0:1-o;
+      const cx=c.x*(W-w)+Math.sin(ts*c.sp+c.ph)*14*wob, cy=c.y*(H*.72)+Math.cos(ts*c.sp*.8+c.ph)*10*wob;
+      const fx=folds[c.f].offsetLeft+(fw-w*.8)/2, fy=H-H*.08-fh-h*.8*.55-(i%5)*3;
+      c.e.style.transform=`translate(${lerp(cx,fx,o).toFixed(1)}px,${lerp(cy,fy,o).toFixed(1)}px) rotate(${lerp(c.r+Math.sin(ts*c.sp+c.ph)*6*wob,(i%3-1)*2,o).toFixed(1)}deg) scale(${lerp(1,.8,o).toFixed(3)})`;
+      c.e.style.zIndex=o>.5?26:3+i;
+    });
+  }
+  if(reduce){ state(1); draw(1,0); return; }
   (function loop(t){
     requestAnimationFrame(loop);
-    const r=sec.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight){ last=0; return; }
-    const dt=last?Math.min(.05,(t-last)/1000):0; last=t;
-    draw(state(progress(sec)),dt);
+    const r=sec.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+    const p=progress(sec); state(p); draw(p,t/1000);
   })(0);
 }
 initV3().start();
