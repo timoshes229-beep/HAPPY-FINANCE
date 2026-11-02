@@ -256,7 +256,7 @@ button{font:inherit}
 .fstair.on{stroke:var(--orange);stroke-width:2}
 .fnode{fill:var(--navy-deep);stroke:rgba(255,255,255,.3);stroke-width:1.5;transition:fill .4s,stroke .4s}
 .fnode.on{fill:var(--orange);stroke:var(--orange)}
-.fc{position:absolute;transform-origin:0 100%;transition:opacity .35s}
+.fc{position:absolute;transform-origin:0 100%}
 .fc .lv{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
 .fc .pl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin-left:10px}
 .fc h3{font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,49px);line-height:1;letter-spacing:-.025em;margin:12px 0 0}
@@ -467,6 +467,8 @@ footer.ft{background:var(--navy-deep);color:var(--mist);position:relative;overfl
 .next-box .digits{display:flex;gap:6px;justify-content:flex-end;margin-top:12px}
 .next-box .digits .fc2{width:clamp(56px,6vw,92px);height:clamp(78px,8.4vw,128px);font-size:clamp(48px,5.6vw,88px)}
 .next-box .lbl{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-top:10px;color:var(--orange)}
+/* reserve room before the countdown is filled in, so the block does not grow under the reader */
+.next-box .digits{min-height:clamp(78px,8.4vw,128px)}.next-box .lbl{min-height:1.5em}
 .board{background:#0B0D14;border:1px solid rgba(255,255,255,.08);padding:clamp(12px,2vw,24px);box-shadow:inset 0 0 60px rgba(0,0,0,.6),0 40px 80px -40px rgba(0,0,0,.8);overflow-x:auto}
 .b-row{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);min-width:max-content}
 .b-row:last-child{border-bottom:0}
@@ -579,7 +581,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
   .grain{display:none}
   .gh{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,15,43,.94)}
   .mglow{filter:none;mix-blend-mode:normal;opacity:.8}
-  .flutes,.fworld,.mphr{will-change:auto}
+  .flutes,.mphr{will-change:auto}
 }
 /* one scale for section headings */
 #services .s-top h2,#process .p-head h2,#team .t-top h2,#values .v-left h2,#check .q-intro h2,#calendar .cal-top h2,#contact .c-grid h2{font-size:clamp(32px,4.2vw,62px);line-height:1.02;letter-spacing:-.025em;font-weight:700;text-transform:none}
@@ -1365,14 +1367,17 @@ function initFounder(){
     const segLen=SX+SY, start=SX*.6;
     lit.style.strokeDashoffset=Math.max(0,total-(start+f*segLen));
     nodes.forEach((n,i)=>n.classList.toggle('on',f>=i-.02));
-    cards.forEach((c,i)=>{ const d=Math.abs(f-i); c.style.opacity=(1-clamp(d*.9,0,.82)).toFixed(3); });
+    // only touch what changed: per-frame DOM writes are what made this scene stutter on phones
+    cards.forEach((c,i)=>{ const o=(1-clamp(Math.abs(f-i)*.9,0,.82)).toFixed(2); if(c._o!==o){ c._o=o; c.style.opacity=o; } });
     const cur=Math.min(N,Math.round(f)+1);
-    lvl.innerHTML=String(cur).padStart(2,'0')+'<span> / '+String(N).padStart(2,'0')+'</span>';
-    hint.style.opacity=1-clamp(p*6);
-    if(caseIdx>=0){ const kk=reduce?1:clamp((f-(caseIdx-.5))/.6); caseN.textContent=Math.round(1500000-(1490000)*ease(kk)).toLocaleString('uk-UA').replace(/\s/g,' '); }
+    if(cur!==lastLvl){ lastLvl=cur; lvl.innerHTML=String(cur).padStart(2,'0')+'<span> / '+String(N).padStart(2,'0')+'</span>'; }
+    const ho=(1-clamp(p*6)).toFixed(2); if(ho!==lastHint){ lastHint=ho; hint.style.opacity=ho; }
+    if(caseIdx>=0){ const kk=reduce?1:clamp((f-(caseIdx-.5))/.6), v=Math.round(1500000-(1490000)*ease(kk)); if(v!==lastCase){ lastCase=v; caseN.textContent=v.toLocaleString('uk-UA').replace(/\s/g,' '); } }
   }
+  let lastLvl=0,lastHint='',lastCase=-1,queued=false;
+  const onScroll=()=>{ if(queued) return; queued=true; requestAnimationFrame(()=>{ queued=false; const r=track.getBoundingClientRect(); if(r.bottom>-innerHeight&&r.top<innerHeight*2) tick(); }); };
   onWidth(()=>{layout();tick();});
-  addEventListener('scroll',tick,{passive:true});
+  addEventListener('scroll',onScroll,{passive:true});
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{layout();tick();});
   layout(); tick();
 }
