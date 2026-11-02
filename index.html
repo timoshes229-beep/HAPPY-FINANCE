@@ -550,6 +550,9 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .t-grid.rv .tc.in .tp img{transform:none}
 .t-grid.rv .tc.in:hover{transform:translateY(-4px)}
 .t-grid.rv .tc.in:hover .tp img{transform:scale(1.06)}
+/* touch screens: no sticky hover lift, and a lighter reveal so swiping the row never fights an animation */
+@media (hover:none){.tc:hover,.t-grid.rv .tc.in:hover{transform:none;box-shadow:none}.tc:hover .tp img,.tc:hover .tp .mono,.t-grid.rv .tc.in:hover .tp img{transform:none}}
+@media (max-width:1000px){.t-grid.rv .tc{transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}.t-grid.rv .tc .tp img{transform:scale(1.06);transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .6s}}
 .tc:hover{box-shadow:0 30px 60px -30px rgba(16,38,98,.45);transform:translateY(-4px)}
 .tc.lead{grid-row:span 2}
 .tp{position:relative;overflow:hidden;aspect-ratio:4/3.4;background:var(--navy)}
@@ -573,7 +576,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .tb blockquote{margin:12px 0 0;font-family:var(--display);font-style:normal;font-weight:500;font-size:clamp(15px,1.2vw,18px);line-height:1.35;border-left:2px solid var(--orange);padding-left:14px;color:var(--navy)}
 @media (max-width:1000px){
   .t-top{grid-template-columns:1fr}
-  .t-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-right:calc(-1 * var(--gr));padding-right:var(--gr);padding-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .t-grid{display:flex;overflow-x:auto;scroll-snap-type:x proximity;overscroll-behavior-x:contain;touch-action:pan-x pan-y;gap:14px;margin-right:calc(-1 * var(--gr));padding-right:var(--gr);padding-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .t-grid::-webkit-scrollbar{display:none}
   .tc{flex:0 0 min(82vw,380px);scroll-snap-align:start;clip-path:none}
   .tc.lead .tp{min-height:0;aspect-ratio:4/3.4;flex:none}
