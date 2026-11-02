@@ -693,6 +693,14 @@ html.menu-open .gh{transform:translate(-50%,0)}
   .fq-fig{height:280px}
   .fq-list details p{padding-right:0}
 }
+/* signature dividers: an orange stroke drawn across the seam by scrolling, ending in a logo stamp */
+.seam{position:relative;background:linear-gradient(var(--st) 50%,var(--sb) 50%);padding:0 var(--gr) 0 var(--gl);margin:-1px 0}
+.seam svg{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto;overflow:visible}
+.seam path{fill:none;stroke:var(--orange);stroke-width:3;stroke-linecap:round}
+.seam .sig-st path{stroke-width:2.6}
+.sig-st{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.4) rotate(-12deg);transition:transform .5s cubic-bezier(.2,.9,.25,1.4),opacity .3s}
+.seam.done .sig-st{opacity:1;transform:scale(1) rotate(-6deg)}
+@media (max-width:820px){.seam{overflow:hidden}.seam svg{width:118%;margin-left:-9%}}
 </style>
 </head>
 <body>
@@ -756,6 +764,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
   </div>
 </section>
 
+<div class="seam" style="--st:var(--navy-deep);--sb:var(--paper)" aria-hidden="true"><svg viewBox="0 0 1200 160"><path d="M10 80 C 160 80, 220 30, 300 60 S 420 130, 520 90 S 640 20, 720 70 S 840 120, 940 80 C 990 62, 1030 70, 1060 80"/><g class="sig-st"><circle cx="1110" cy="80" r="40" fill="#fff" stroke="#FB6835" stroke-width="3"/><circle cx="1110" cy="80" r="31" fill="none" stroke="#FB6835" stroke-width="1.5"/><rect x="1094" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><rect x="1117" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><path d="M1103 80h14" stroke="#FB6835" stroke-width="2.6"/></g></svg></div>
 <!-- ============ BLOCK 2c: pain — blinds ============ -->
 <section id="pain" aria-label="Знайомі ситуації">
   <div class="track">
@@ -902,6 +911,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
     </div>
   </div>
 </section>
+<div class="seam" style="--st:var(--navy-deep);--sb:var(--paper)" aria-hidden="true"><svg viewBox="0 0 1200 160"><path d="M10 92 C 120 60, 200 120, 290 84 S 400 30, 470 78 Q 520 110, 560 70 T 660 74 S 800 120, 900 66 C 960 40, 1020 84, 1060 80"/><g class="sig-st"><circle cx="1110" cy="80" r="40" fill="#fff" stroke="#FB6835" stroke-width="3"/><circle cx="1110" cy="80" r="31" fill="none" stroke="#FB6835" stroke-width="1.5"/><rect x="1094" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><rect x="1117" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><path d="M1103 80h14" stroke="#FB6835" stroke-width="2.6"/></g></svg></div>
 <!-- ============ BLOCK 5b: team ============ -->
 <section id="team" aria-label="Команда">
   <div class="in">
@@ -993,6 +1003,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 </section>
 
 
+<div class="seam" style="--st:var(--ink);--sb:var(--white)" aria-hidden="true"><svg viewBox="0 0 1200 160"><path d="M10 70 C 140 110, 230 100, 330 70 S 450 20, 540 64 S 600 130, 700 96 S 860 36, 960 74 C 1000 88, 1035 84, 1060 80"/><g class="sig-st"><circle cx="1110" cy="80" r="40" fill="#fff" stroke="#FB6835" stroke-width="3"/><circle cx="1110" cy="80" r="31" fill="none" stroke="#FB6835" stroke-width="1.5"/><rect x="1094" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><rect x="1117" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><path d="M1103 80h14" stroke="#FB6835" stroke-width="2.6"/></g></svg></div>
 <!-- ============ BLOCK 9b: FAQ ============ -->
 <section id="faq" aria-label="Часті питання">
   <div class="in">
@@ -1013,6 +1024,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 </section>
 
 
+<div class="seam" style="--st:var(--white);--sb:var(--navy)" aria-hidden="true"><svg viewBox="0 0 1200 160"><path d="M10 84 Q 110 40, 210 76 T 400 82 S 520 132, 610 92 S 720 28, 820 70 S 950 116, 1010 88 C 1035 78, 1050 79, 1060 80"/><g class="sig-st"><circle cx="1110" cy="80" r="40" fill="#fff" stroke="#FB6835" stroke-width="3"/><circle cx="1110" cy="80" r="31" fill="none" stroke="#FB6835" stroke-width="1.5"/><rect x="1094" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><rect x="1117" y="64" width="9" height="32" rx="4.5" fill="none" stroke="#102662" stroke-width="2.4"/><path d="M1103 80h14" stroke="#FB6835" stroke-width="2.6"/></g></svg></div>
 <!-- ============ BLOCK 8: contact + footer ============ -->
 <section id="contact" aria-label="Заявка">
   <div class="flutes2"></div>
@@ -1600,6 +1612,13 @@ function initPain(){
     const p=progress(sec); state(p); draw(p,t/1000);
   })(0);
 }
+function initSign(){
+  const items=[...document.querySelectorAll('.seam')].map(el=>{ const pth=el.querySelector('svg>path'), len=pth.getTotalLength(); pth.style.strokeDasharray=len; pth.style.strokeDashoffset=reduce?0:len; if(reduce) el.classList.add('done'); return {el,pth,len}; });
+  if(reduce) return;
+  const tick=()=>items.forEach(it=>{ const r=it.el.getBoundingClientRect(); if(r.bottom<-200||r.top>innerHeight+200) return;
+    const p=clamp((innerHeight*.95-r.top)/(innerHeight*.6)); it.pth.style.strokeDashoffset=(it.len*(1-p)).toFixed(1); it.el.classList.toggle('done',p>.97); });
+  addEventListener('scroll',tick,{passive:true}); onWidth(tick); tick();
+}
 initV3().start();
 initPain();
 initManifest();
@@ -1612,6 +1631,7 @@ initCheck();
 initCalendar();
 initContact();
 initGlobal();
+initSign();
 })();
 </script>
 </body>
