@@ -778,7 +778,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
         </div>
         <div class="pn-win" aria-hidden="true">
           <div class="pn-box" id="pnBox"><div class="pn-fold f0"><span>Рахунки</span></div><div class="pn-fold f1"><span>Акти</span></div><div class="pn-fold f2"><span>Накладні</span></div>
-            <div class="pn-me"><img src="img/team/cut-pain.png" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.png" alt=""></div></div>
+            <div class="pn-me"><img id="pnSkeptic" src="img/team/cut-pain.png" alt=""><img class="smile" id="pnSmile" src="img/team/cut-pain-smile.png" alt=""></div></div>
         </div>
       </div>
     </div>
@@ -1567,7 +1567,7 @@ function initTeam(){
 function initPain(){
   const sec=document.getElementById('pain'); if(!sec) return;
   const box=document.getElementById('pnBox'), folds=[...box.querySelectorAll('.pn-fold')];
-  const smile=document.getElementById('pnSmile'), list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
+  const skeptic=document.getElementById('pnSkeptic'), smile=document.getElementById('pnSmile'), list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
   // [label, kind, folder]
   const D=[['Рахунок №31','',0],['Акт','',1],['Накладна','',2],['Чек','chk',0],['Рахунок №32','',0],['Не забути!','stk',1],['Акт звірки','',1],['Накладна №148','',2],['Чек','chk',2],['Рахунок №33','',0],['Договір','',1],['Звіт?','stk',2],['ТТН','',2],['Чек','chk',0]].slice(0,lite?10:14);
   const docs=D.map((d,i)=>{ const e=document.createElement('div'); e.className='pn-dc '+d[1]; e.innerHTML=d[1]==='stk'?d[0]:`<b>${d[0]}</b><i></i><i></i><i></i><i></i>`; box.appendChild(e);
@@ -1578,7 +1578,8 @@ function initPain(){
     const f=p>.74, i=f?4:Math.min(3,Math.max(0,Math.floor((p-.04)/.17)));
     if(i!==li){ li=i; lis.forEach((el,k)=>{ el.classList.toggle('on',k===i); el.classList.toggle('past',k<i); }); }
     if(f!==fin){ fin=f; out.classList.toggle('on',f); list.classList.toggle('gone',f); }
-    smile.style.opacity=smooth(.76,.86,p).toFixed(3);
+    // swap the photos fully: two poses never show at once
+    const sm=smooth(.76,.86,p); smile.style.opacity=sm.toFixed(3); skeptic.style.opacity=(1-sm).toFixed(3);
   }
   function draw(p,ts){
     const W=box.clientWidth,H=box.clientHeight,o=smooth(.68,.88,p), fw=folds[0].offsetWidth, fh=folds[0].offsetHeight;
