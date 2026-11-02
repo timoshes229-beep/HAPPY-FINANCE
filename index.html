@@ -549,7 +549,8 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .tp .mono{position:absolute;inset:0;display:grid;place-items:center;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,rgba(255,255,255,0) 7px,rgba(0,0,0,.18) 18px,rgba(255,255,255,.035) 22px),radial-gradient(90% 80% at 30% 20%,#1B3A8F,var(--navy) 70%);transition:transform 1.4s cubic-bezier(.2,.7,.1,1)}
 .tp .mono b{font-family:var(--display);font-weight:700;font-style:normal;font-size:clamp(57px,5.7vw,98px);color:var(--beige);letter-spacing:-.025em;line-height:1}
 .tc.lead .tp .mono b{font-size:clamp(110px,11vw,200px)}
-.tp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.05);transition:transform 1.4s cubic-bezier(.2,.7,.1,1)}
+.tp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.05);transition:transform 1.4s cubic-bezier(.2,.7,.1,1),opacity .6s}
+.tp img.ld{opacity:0}
 .tc:hover .tp .mono,.tc:hover .tp img{transform:scale(1.06)}
 .tp .fact{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:var(--orange);color:var(--ink);font-size:14px;font-weight:600;line-height:1.4;transform:translateY(101%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .tc:hover .tp .fact,.tc:focus-within .tp .fact{transform:none}
@@ -607,8 +608,11 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .pn-win{position:relative;height:min(76vh,780px);height:min(76svh,780px)}
 .pn-box{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#E9E2DA,#D9CCBF);box-shadow:0 50px 90px -40px rgba(16,38,98,.4)}
 .pn-me{position:absolute;left:3%;bottom:0;height:68%;aspect-ratio:677/1000;z-index:20;pointer-events:none}
-.pn-me img{position:absolute;left:0;bottom:0;height:100%;width:auto;filter:drop-shadow(0 20px 30px rgba(7,15,43,.35))}
-.pn-me .smile{opacity:0}
+.pn-me img{position:absolute;left:0;bottom:0;height:100%;width:auto;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35))}
+.pn-me img{transition:opacity .55s ease,filter .55s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.pn-me .smile{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:scale(.97);transform-origin:50% 100%}
+.smiling .pn-me #pnSkeptic{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35))}
+.smiling .pn-me .smile{opacity:1;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:none;transition-delay:.12s}
 .pn-dc{position:absolute;left:0;top:0;width:clamp(96px,9.5vw,136px);aspect-ratio:3/4;background:#fff;border-radius:3px;box-shadow:0 10px 24px -10px rgba(43,29,20,.45);padding:10px;color:var(--ink);opacity:0;transition:opacity .4s;will-change:transform}
 .pn-dc.on{opacity:1}
 .pn-dc b{display:block;font:700 12px/1.2 var(--display);color:var(--navy);margin-bottom:6px}
@@ -1560,7 +1564,11 @@ function initGlobal(){
 function initTeam(){
   // add file names here when real photos arrive, e.g. {maria:'img/team/maria.jpg'}
   const PHOTOS={maria:'img/team/maria.jpg',evgenia:'img/team/evgenia.jpg',karyna:'img/team/karyna.jpg'};
-  document.querySelectorAll('.tc').forEach(c=>{ const src=PHOTOS[c.dataset.photo]; if(src){ const im=document.createElement('img'); im.src=src; im.alt=c.querySelector('h3').textContent; im.loading='lazy'; c.querySelector('.tp').prepend(im); c.querySelector('.mono').remove(); } });
+  // fetch right after the page has loaded, not when the cards reach the screen; show each photo once decoded
+  const addPhotos=()=>document.querySelectorAll('.tc').forEach(c=>{ const src=PHOTOS[c.dataset.photo]; if(!src) return;
+    const im=new Image(); im.alt=c.querySelector('h3').textContent; im.decoding='async'; im.className='ld'; im.onload=()=>im.classList.remove('ld'); im.src=src;
+    c.querySelector('.tp').prepend(im); c.querySelector('.mono').remove(); });
+  if(document.readyState==='complete') addPhotos(); else addEventListener('load',addPhotos,{once:true});
   const grid=document.getElementById('tGrid'), cards=[...grid.querySelectorAll('.tc')];
   if(reduce||!('IntersectionObserver' in window)||matchMedia('(max-width:1000px)').matches) return;
   grid.classList.add('anim');
@@ -1579,7 +1587,7 @@ function initTeam(){
 function initPain(){
   const sec=document.getElementById('pain'); if(!sec) return;
   const box=document.getElementById('pnBox'), folds=[...box.querySelectorAll('.pn-fold')];
-  const skeptic=document.getElementById('pnSkeptic'), smile=document.getElementById('pnSmile'), list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
+  const list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
   // [label, kind, folder]
   const D=[['Рахунок №31','',0],['Акт','',1],['Накладна','',2],['Чек','chk',0],['Рахунок №32','',0],['Не забути!','stk',1],['Акт звірки','',1],['Накладна №148','',2],['Чек','chk',2],['Рахунок №33','',0],['Договір','',1],['Звіт?','stk',2],['ТТН','',2],['Чек','chk',0]].slice(0,lite?10:14);
   const docs=D.map((d,i)=>{ const e=document.createElement('div'); e.className='pn-dc '+d[1]; e.innerHTML=d[1]==='stk'?d[0]:`<b>${d[0]}</b><i></i><i></i><i></i><i></i>`; box.appendChild(e);
@@ -1590,8 +1598,8 @@ function initPain(){
     const f=p>.74, i=f?4:Math.min(3,Math.max(0,Math.floor((p-.04)/.17)));
     if(i!==li){ li=i; lis.forEach((el,k)=>{ el.classList.toggle('on',k===i); el.classList.toggle('past',k<i); }); }
     if(f!==fin){ fin=f; out.classList.toggle('on',f); list.classList.toggle('gone',f); }
-    // swap the photos fully: two poses never show at once
-    const sm=smooth(.76,.86,p); smile.style.opacity=sm.toFixed(3); skeptic.style.opacity=(1-sm).toFixed(3);
+    // a timed swap (not tied to scroll speed): the frown blurs out as the smile blurs in
+    box.classList.toggle('smiling',p>.78);
   }
   function draw(p,ts){
     const W=box.clientWidth,H=box.clientHeight,o=smooth(.68,.88,p), fw=folds[0].offsetWidth, fh=folds[0].offsetHeight;
