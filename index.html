@@ -1556,7 +1556,7 @@ function initTeam(){
   addEventListener('scroll',chk,{passive:true}); chk();
 }
 /* ===========================================================
-   PAIN — people rush behind half-closed blinds; scrolling opens
+   PAIN — a crowd rushes behind half-closed blinds; scrolling opens
    the blinds, the blur clears and the crowd calms down
 =========================================================== */
 function initPain(){
@@ -1564,37 +1564,24 @@ function initPain(){
   const cv=document.getElementById('pnCv'), ctx=cv.getContext('2d'), bl=document.getElementById('pnBlinds');
   const smile=document.getElementById('pnSmile'), list=document.getElementById('pnList'), lis=[...list.children], out=document.getElementById('pnOut');
   for(let i=0;i<(lite?11:15);i++) bl.appendChild(document.createElement('i'));
-  const MAX=lite?7:10, ppl=[];
-  for(let i=0;i<MAX;i++) ppl.push({x:Math.random()*1.2-.1, d:i%2?1:-1, z:.55+((i*37)%11)/20, ph:Math.random()*6.3, sp:.75+Math.random()*.5, bag:i%3===0, r:(i*3)%MAX});
-  ppl.sort((a,b)=>a.z-b.z);
-  // the low-res buffer is the blur: fewer pixels = softer silhouettes
-  const LV=lite?[.04,.052,.064,.076,.09]:[.045,.06,.075,.09,.11];
-  let W=0,H=0,lvl=-1,bg=null;
-  function size(l){ const r=cv.parentElement.getBoundingClientRect(); lvl=l; W=cv.width=Math.max(24,Math.round(r.width*LV[l])); H=cv.height=Math.max(24,Math.round(r.height*LV[l]));
-    bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,'#FFB892'); bg.addColorStop(.5,'#FB7A45'); bg.addColorStop(1,'#B8471F'); }
-  function person(x,fy,h,ph,dir,al,bag){
-    const s=Math.sin(ph)*.32, bob=Math.abs(Math.cos(ph))*h*.018, hip=fy-h*.46+bob, sh=fy-h*.82+bob, L=h*.47;
-    ctx.fillStyle=ctx.strokeStyle=`rgba(9,20,58,${al})`; ctx.lineCap='round';
-    ctx.lineWidth=h*.095; ctx.beginPath(); ctx.moveTo(x,hip); ctx.lineTo(x+Math.sin(s)*L,hip+Math.cos(s)*L); ctx.moveTo(x,hip); ctx.lineTo(x-Math.sin(s)*L,hip+Math.cos(s)*L); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x-h*.1,sh+h*.03); ctx.quadraticCurveTo(x,sh-h*.02,x+h*.1,sh+h*.03); ctx.lineTo(x+h*.09,hip+h*.06); ctx.lineTo(x-h*.09,hip+h*.06); ctx.closePath(); ctx.fill();
-    ctx.lineWidth=h*.055; const A=h*.34; ctx.beginPath(); ctx.moveTo(x,sh+h*.05); ctx.lineTo(x-Math.sin(s)*A*.8,sh+h*.05+Math.cos(s*.8)*A); ctx.moveTo(x,sh+h*.05); ctx.lineTo(x+Math.sin(s)*A*.8,sh+h*.05+Math.cos(s*.8)*A); ctx.stroke();
-    if(bag) ctx.fillRect(x+Math.sin(s)*A*.8-h*.02,sh+h*.05+Math.cos(s*.8)*A-h*.02,dir*h*.13,h*.16);
-    ctx.beginPath(); ctx.ellipse(x+dir*h*.012,sh-h*.085,h*.062,h*.078,0,0,6.3); ctx.fill();
-  }
-  function draw(c,dt){
+  // real crowd footage, repainted in brand colours: dark figures -> navy, light -> orange
+  const vid=document.createElement('video'); vid.src='img/pain-crowd.mp4'; vid.muted=true; vid.loop=true; vid.playsInline=true; vid.preload='none'; vid.setAttribute('playsinline','');
+  // the low-res buffer is the blur: fewer pixels = softer silhouettes (buffer widths in px)
+  const LV=lite?[44,58,76,98,124]:[56,74,98,130,176];
+  let W=0,H=0,lvl=-1,rate=1;
+  function size(l){ const r=cv.parentElement.getBoundingClientRect(); lvl=l; W=cv.width=LV[l]; H=cv.height=Math.max(24,Math.round(LV[l]*r.height/Math.max(1,r.width))); }
+  function draw(c){
     const want=Math.round((1-c)*(LV.length-1)); if(want!==lvl) size(want);
-    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-    // soft light columns of a far window wall
-    ctx.fillStyle='rgba(255,236,220,.22)'; for(let k=0;k<3;k++) ctx.fillRect(W*(.12+k*.32),0,W*.12,H*.78);
-    ctx.fillStyle='rgba(120,40,10,.18)'; ctx.fillRect(0,H*.84,W,H*.16);
-    const n=Math.round(lerp(3,MAX,c)), spd=lerp(.5,1.9,c);
-    for(const p of ppl){
-      if(p.r>=n) continue;
-      p.x+=p.d*dt*.07*p.sp*spd*p.z; if(p.x>1.15) p.x=-.15; if(p.x<-.15) p.x=1.15;
-      p.ph+=dt*p.sp*lerp(4.5,9,c)*(spd>1?1:.8);
-      const h=H*.58*p.z, fy=H*(.83+(p.z-.55)*.3);
-      person(p.x*W,fy,h,p.ph,p.d,lerp(.38,.9,(p.z-.55)/.55),p.bag);
-    }
+    ctx.globalCompositeOperation='source-over';
+    if(vid.readyState<2){ ctx.fillStyle='#F08A58'; ctx.fillRect(0,0,W,H); return; }
+    // zoom into the lower part of the frame where the walkers are
+    const vw=vid.videoWidth, vh=vid.videoHeight, k=Math.max(W/vw,H/vh)*1.45, dw=vw*k, dh=vh*k;
+    ctx.drawImage(vid,(W-dw)/2,H-dh*.92,dw,dh);
+    ctx.globalCompositeOperation='saturation'; ctx.fillStyle='#808080'; ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='color-dodge'; ctx.fillStyle='#707070'; ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='multiply'; ctx.fillStyle='#FB6835'; ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='lighten'; ctx.fillStyle='#0E1D4E'; ctx.fillRect(0,0,W,H);
+    const want2=+lerp(.6,1.5,c).toFixed(1); if(want2!==rate){ rate=want2; vid.playbackRate=rate; }
   }
   let li=-2,fin=null;
   function state(p){
@@ -1605,14 +1592,15 @@ function initPain(){
     smile.style.opacity=smooth(.76,.86,p).toFixed(3);
     return 1-smooth(.5,.88,p);
   }
-  if(reduce){ state(1); draw(0,0); return; }
+  if(reduce){ state(1); vid.addEventListener('loadeddata',()=>draw(0),{once:true}); return; }
   onWidth(()=>{ lvl=-1; });
-  let last=0;
-  (function loop(t){
+  (function loop(){
     requestAnimationFrame(loop);
-    const r=sec.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight){ last=0; return; }
-    const dt=last?Math.min(.05,(t-last)/1000):0; last=t;
-    draw(state(progress(sec)),dt);
+    const r=sec.getBoundingClientRect();
+    if(vid.preload==='none'&&r.top<innerHeight*2.5){ vid.preload='auto'; vid.load(); }
+    if(r.bottom<0||r.top>innerHeight){ if(!vid.paused) vid.pause(); return; }
+    if(vid.paused) vid.play().catch(()=>{});
+    draw(state(progress(sec)));
   })(0);
 }
 initV3().start();
