@@ -1010,7 +1010,7 @@ h2,h3,h4{text-wrap:balance}
       <div class="fq-fig"><a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Поставити питання</a></div>
     </div>
     <div class="fq-list">
-      <details name="faq" open><summary>Скільки коштує супровід?<i aria-hidden="true"></i></summary><p>Залежить від форми бізнесу, кількості операцій і працівників. Точну суму називаємо після короткої консультації, коли зрозуміло, який обсяг роботи.</p></details>
+      <details name="faq"><summary>Скільки коштує супровід?<i aria-hidden="true"></i></summary><p>Залежить від форми бізнесу, кількості операцій і працівників. Точну суму називаємо після короткої консультації, коли зрозуміло, який обсяг роботи.</p></details>
       <details name="faq"><summary>Ви працюєте тільки з одним містом?<i aria-hidden="true"></i></summary><p>Ні. Працюємо онлайн по всій Україні: документи, звітність і консультації не потребують зустрічей в офісі.</p></details>
       <details name="faq"><summary>Як передавати документи?<i aria-hidden="true"></i></summary><p>Як вам зручно: фото, скани, електронні документи або доступ до банку й облікової програми. На старті домовляємось про один канал, щоб нічого не губилося.</p></details>
       <details name="faq"><summary>Можна перейти до вас посеред року?<i aria-hidden="true"></i></summary><p>Так. Спочатку перевіряємо, як вівся облік, знаходимо прогалини й виправляємо їх, а потім беремо поточну роботу.</p></details>
@@ -1636,10 +1636,6 @@ function initTeamMore(){
     b.addEventListener('click',()=>{ const o=c.classList.toggle('open'); b.setAttribute('aria-expanded',o); b.lastChild.textContent=o?'Згорнути':'Детальніше'; });
   });
 }
-function initFaq(){
-  // phones: start with every answer closed so the list stays short
-  if(matchMedia('(max-width:600px)').matches) document.querySelectorAll('.fq-list details[open]').forEach(d=>d.removeAttribute('open'));
-}
 function initFitAccents(){
   // phones: every section heading gets the same size, chosen so each accented phrase fits on one line
   const mq=matchMedia('(max-width:600px)');
@@ -1668,7 +1664,6 @@ initGlobal();
 initSign();
 initSoc();
 initFitAccents();
-initFaq();
 initTeamMore();
 })();
 </script>
