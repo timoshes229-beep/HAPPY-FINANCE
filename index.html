@@ -1590,6 +1590,10 @@ function initSoc(){
   new IntersectionObserver(es=>{ inHero=es[0].isIntersecting; upd(); },{rootMargin:'0px 0px -60% 0px'}).observe(hero);
   new IntersectionObserver(es=>{ inContact=es[0].isIntersecting; upd(); },{threshold:.25}).observe(contact);
 }
+function initFaq(){
+  // phones: start with every answer closed so the list stays short
+  if(matchMedia('(max-width:600px)').matches) document.querySelectorAll('.fq-list details[open]').forEach(d=>d.removeAttribute('open'));
+}
 function initFitAccents(){
   // phones: every section heading gets the same size, chosen so each accented phrase fits on one line
   const mq=matchMedia('(max-width:600px)');
@@ -1618,6 +1622,7 @@ initGlobal();
 initSign();
 initSoc();
 initFitAccents();
+initFaq();
 })();
 </script>
 </body>
