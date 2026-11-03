@@ -71,10 +71,10 @@ button{font:inherit}
 @keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .v3-final{position:absolute;inset:0;z-index:4;pointer-events:none;color:var(--white)}
 .v3-final .hdr{pointer-events:auto;color:var(--white);opacity:0}
-.v3-band{position:absolute;left:0;right:0;bottom:calc(14% + env(safe-area-inset-bottom,0px));background:var(--navy);color:var(--white);transform:scaleX(0);transform-origin:left;pointer-events:auto}
+.v3-band{position:absolute;left:0;right:0;bottom:calc(14% + env(safe-area-inset-bottom,0px));background:var(--orange);color:var(--ink);transform:scaleX(0);transform-origin:left;pointer-events:auto}
 .v3-band .in{max-width:1440px;margin:0 auto;padding:28px var(--gr) 28px var(--gl);display:flex;justify-content:space-between;align-items:center;gap:20px 40px;flex-wrap:wrap}
 .v3-band h2{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,42px);line-height:1.05;margin:0;letter-spacing:-.02em;max-width:22em}
-.v3-band .btn{background:var(--orange);color:var(--ink)}
+.v3-band .btn{background:var(--ink);color:var(--white)}
 .v3-band .in>*{opacity:0;transform:translateY(16px)}
 .v3-stats{position:absolute;top:calc(124px + env(safe-area-inset-top,0px));right:var(--gr);display:grid;gap:14px;text-align:right;opacity:0}
 .v3-stats b{display:block;font-family:var(--mono);font-weight:400;font-size:clamp(24px,3vw,40px);line-height:1}
@@ -1108,7 +1108,7 @@ function initV3(){
   let origin=[0,0];
 
   function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
-  const heroImg=new Image(); heroImg.src='img/hero-v08-orange.webp';
+  const heroImg=new Image(); heroImg.src='img/hero-papers.webp';
   function paint(){
     const dpr=Math.min(devicePixelRatio||1,1.5); const W=cv.clientWidth,H=cv.clientHeight;
     cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
