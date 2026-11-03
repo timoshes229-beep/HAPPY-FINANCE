@@ -687,6 +687,8 @@ h2,h3,h4{text-wrap:balance}
 /* services footer line: exactly two rows on wider screens */
 .s-foot p{max-width:none}
 @media (min-width:700px){.s-line{white-space:nowrap}}
+/* phones: size the text to the screen so it still fits in exactly two rows */
+@media (max-width:699px){.s-foot p{font-size:calc((100vw - 34px) / 27)}.s-line{white-space:nowrap}}
 </style>
 </head>
 <body>
