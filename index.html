@@ -689,6 +689,19 @@ h2,h3,h4{text-wrap:balance}
 @media (min-width:700px){.s-line{white-space:nowrap}}
 /* phones: size the text to the screen so it still fits in exactly two rows */
 @media (max-width:699px){.s-foot p{font-size:calc((100vw - 34px) / 27)}.s-line{white-space:nowrap}}
+/* phones: team as a compact vertical list (no sideways row, so vertical swipes are never captured) */
+@media (max-width:700px){
+  .t-grid{display:grid;grid-template-columns:1fr;overflow:visible;scroll-snap-type:none;margin-right:0;padding:0;gap:12px}
+  .tc,.tc.lead{flex:none;grid-row:auto;display:grid;grid-template-columns:110px minmax(0,1fr);align-items:stretch}
+  .tc .tp,.tc.lead .tp{aspect-ratio:auto;min-height:150px;height:100%}
+  .tp .fact,.t-swipe{display:none}
+  .tp .mono b,.tc.lead .tp .mono b{font-size:34px}
+  .tb{padding:14px 16px;gap:4px;justify-content:center}
+  .tb h3,.tc.lead .tb h3{font-size:21px}
+  .tb .rl{font-size:10px}
+  .tb p:not(.gain),.tb .chips,.tb blockquote{display:none}
+  .tb p.gain{font-size:14px;margin:4px 0 0;padding-left:10px}
+}
 </style>
 </head>
 <body>
