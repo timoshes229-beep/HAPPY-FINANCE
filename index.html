@@ -619,12 +619,13 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .pn-win{position:relative;height:min(76vh,780px);height:min(76svh,780px)}
 .pn-box{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#E9E2DA,#D9CCBF);box-shadow:0 50px 90px -40px rgba(16,38,98,.4)}
 .pn-me{position:absolute;left:3%;bottom:0;height:68%;aspect-ratio:677/1000;z-index:20;pointer-events:none}
-.pn-me img{position:absolute;left:0;bottom:0;height:100%;width:auto;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35))}
-.pn-me img{transition:opacity .55s ease,filter .55s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+/* no CSS filters on these cut-outs: Safari can paint a filtered transparent image as a white box */
+.pn-me img{position:absolute;left:0;bottom:0;height:100%;width:auto}
+.pn-me img{transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 /* the smiling frame sits 4.5% to the right in the source; shift it so the heads line up */
-.pn-me .smile{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:translateX(-4.5%) scale(.97);transform-origin:50% 100%}
-.smiling .pn-me #pnSkeptic{opacity:0;filter:blur(8px) drop-shadow(0 20px 30px rgba(7,15,43,.35))}
-.smiling .pn-me .smile{opacity:1;filter:blur(0) drop-shadow(0 20px 30px rgba(7,15,43,.35));transform:translateX(-4.5%);transition-delay:.12s}
+.pn-me .smile{opacity:0;transform:translateX(-4.5%) scale(.97);transform-origin:50% 100%}
+.smiling .pn-me #pnSkeptic{opacity:0}
+.smiling .pn-me .smile{opacity:1;transform:translateX(-4.5%);transition-delay:.12s}
 .pn-dc{position:absolute;left:0;top:0;width:clamp(96px,9.5vw,136px);aspect-ratio:3/4;background:#fff;border-radius:3px;box-shadow:0 10px 24px -10px rgba(43,29,20,.45);padding:10px;color:var(--ink);opacity:0;transition:opacity .4s;will-change:transform}
 .pn-dc.on{opacity:1}
 .pn-dc b{display:block;font:700 12px/1.2 var(--display);color:var(--navy);margin-bottom:6px}
@@ -669,7 +670,7 @@ html.menu-open .gh{transform:translate(-50%,0)}
 .q-intro h2{max-width:calc(100% - clamp(140px,15vw,220px))}
 .q-me{position:absolute;right:-10px;bottom:0;height:clamp(240px,25vw,380px);width:auto;pointer-events:none}
 .cal-top{grid-template-columns:minmax(0,1.2fr) auto auto;position:relative}
-.cal-me{height:clamp(250px,23vw,370px);width:auto;align-self:end;margin-bottom:calc(-1 * clamp(30px,4vw,50px));pointer-events:none;filter:drop-shadow(0 0 40px rgba(251,104,53,.25))}
+.cal-me{height:clamp(250px,23vw,370px);width:auto;align-self:end;margin-bottom:calc(-1 * clamp(30px,4vw,50px));pointer-events:none}
 .board{position:relative;z-index:1}
 @media (max-width:900px){
   .cal-top{grid-template-columns:1fr}
