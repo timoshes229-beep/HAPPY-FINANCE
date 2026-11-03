@@ -147,6 +147,8 @@ button{font:inherit}
 .s-row .c{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#596184;white-space:nowrap}
 .s-row.on h3{color:var(--navy);font-style:normal;transform:translateX(34px)}
 .s-row.on h3::before{transform:scaleX(1)}
+/* hover only hints that a row is clickable; the photo changes on click */
+@media (hover:hover){.s-row:not(.on):hover h3{color:rgba(16,38,98,.68)}}
 .s-row.on .n{color:var(--orange)}
 .s-row .d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.7,0,.2,1)}
 .s-row .d>div{overflow:hidden;min-height:0}
@@ -1334,7 +1336,6 @@ function initServices(){
   }
   tabs.forEach(t=>t.addEventListener('click',()=>{ if(t.dataset.k===cur) return; tabs.forEach(x=>x.setAttribute('aria-selected',x===t)); moveInk(); render(t.dataset.k,!reduce); }));
   const fine=matchMedia('(hover:hover) and (min-width:901px)');
-  list.addEventListener('pointerover',e=>{ if(!fine.matches) return; const r=e.target.closest('.s-row'); if(r) setActive(+r.dataset.i); });
   list.addEventListener('click',e=>{ const r=e.target.closest('.s-row'); if(!r) return; const i=+r.dataset.i; if(!fine.matches&&i===act){ r.classList.remove('on'); act=-1; return; } setActive(i,true); });
   list.addEventListener('keydown',e=>{ if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('s-row')){ e.preventDefault(); setActive(+e.target.dataset.i,true); } });
   addEventListener('resize',moveInk);
